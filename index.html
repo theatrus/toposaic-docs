@@ -1,31 +1,216 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Toposaic</title>
-  <meta name="description" content="Toposaic — a terrain puzzle.">
-  <style>
-    :root { color-scheme: light dark; }
-    html, body { height: 100%; margin: 0; }
-    body {
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      min-height: 100%; text-align: center; padding: 2rem;
-      background: #0f1115; color: #e8eaed;
-    }
-    @media (prefers-color-scheme: light) {
-      body { background: #f7f8fa; color: #1a1c20; }
-    }
-    h1 { font-size: clamp(2.5rem, 8vw, 4.5rem); margin: 0 0 .4rem; letter-spacing: -.02em; }
-    p { font-size: 1.15rem; opacity: .8; margin: .3rem 0; max-width: 34rem; }
-    a { color: inherit; }
-    .tag { opacity: .55; font-size: .95rem; margin-top: 1.6rem; }
-  </style>
+  <title>TopoSaic — turn any place into a printable topographic puzzle</title>
+  <meta name="description" content="TopoSaic is a local-first topographic puzzle generator. Pick a place, tune the relief, colors, roads, and water, and export watertight jigsaw pieces, a solid model, or a contour tray as print-ready STL and 3MF.">
+  <link rel="icon" type="image/png" href="assets/logo.png">
+  <link rel="stylesheet" href="css/site.css?v=1">
+  <meta property="og:title" content="TopoSaic">
+  <meta property="og:description" content="A local-first topographic puzzle generator. Choose a place, tune the printable model, and export watertight STL and color 3MF.">
+  <meta property="og:image" content="https://toposaic.com/assets/og.png">
+  <meta property="og:url" content="https://toposaic.com/">
+  <meta property="og:type" content="website">
 </head>
 <body>
-  <h1>Toposaic</h1>
-  <p>A terrain puzzle. Coming soon.</p>
-  <p class="tag">More at <a href="https://github.com/theatrus/terrain-puzzle">github.com/theatrus/terrain-puzzle</a></p>
+
+<!-- site-header:start -->
+<header class="site-header">
+  <nav class="nav" aria-label="Primary navigation">
+    <a class="brand" href="./">
+      <img src="assets/logo.png" alt="">
+      <span>TopoSaic<small>Terrain Puzzle</small></span>
+    </a>
+    <div class="nav-links">
+      <a href="#features" class="keep">Features</a>
+      <a href="#export">Export</a>
+      <a href="#developers">Developers</a>
+      <a href="https://github.com/theatrus/toposaic">GitHub</a>
+      <a class="cta" href="https://github.com/theatrus/toposaic/releases">Download</a>
+    </div>
+  </nav>
+</header>
+<!-- site-header:end -->
+
+<section class="hero">
+  <div>
+    <img class="hero-logo" src="assets/logo.png" alt="TopoSaic logo">
+    <h1>Turn any place into a<br><span class="grad">printable topographic puzzle.</span></h1>
+    <p class="lede">
+      TopoSaic is a local-first topographic puzzle generator. A Rust service
+      samples worldwide elevation data, builds watertight pieces with round
+      jigsaw tabs and sockets, and stores job state in SQLite. The web app lets
+      you choose a place and tune the printable model — mesh detail, surface
+      colors, roads, water, and buildings — beside a live 3D preview.
+    </p>
+    <div class="btn-row">
+      <a class="btn primary" href="https://github.com/theatrus/toposaic/releases">Download the app</a>
+      <a class="btn" href="#features">See what it makes</a>
+      <a class="btn" href="https://github.com/theatrus/toposaic">Source on GitHub</a>
+    </div>
+    <p class="eyebrow" style="margin-top:1rem;">Free desktop app for Windows, macOS &amp; Linux · no setup, no terminal</p>
+  </div>
+  <figure class="hero-shot">
+    <img src="assets/toposaic-studio.png" alt="TopoSaic workspace showing the Mount Rainier map and interactive 3D terrain puzzle preview" width="1200">
+    <figcaption>Choose a place beside a live, rotatable elevation preview.</figcaption>
+  </figure>
+</section>
+
+<div class="strip">
+  <p class="strip-inner">
+    <strong>Local-first, from map to model.</strong> The Rust engine samples
+    global elevation, drapes it in real land cover, roads, and water, and writes
+    watertight meshes straight to your disk — nothing leaves your machine but the
+    public map tiles it fetches.
+  </p>
+</div>
+
+<section class="section" id="features">
+  <p class="eyebrow">What it makes</p>
+  <h2>Real terrain, print-ready.</h2>
+  <p class="sub">Every model is watertight and drawn from public elevation, land-cover, and OpenStreetMap data — cached locally so repeat tweaks reuse the same download.</p>
+  <div class="features">
+    <div class="card">
+      <div class="icon">🧩</div>
+      <h3>Watertight puzzle pieces</h3>
+      <p>Round jigsaw tabs and sockets with narrow-necked knobs, like a standard jigsaw. Layouts run from 2×2 to 16×16 — the default 10×10 makes 100 pieces.</p>
+    </div>
+    <div class="card">
+      <div class="icon">🌐</div>
+      <h3>Worldwide elevation</h3>
+      <p>Reads Mapzen Terrarium tiles from the AWS Open Data registry. Elevation, ESA WorldCover, and OpenStreetMap inputs cache under your OS user cache with atomic writes.</p>
+    </div>
+    <div class="card">
+      <div class="icon">🛰️</div>
+      <h3>Live 3D relief preview</h3>
+      <p>A lit height mesh appears after a 64×64 sample settles — drag or use the arrow keys to orbit, scroll or pinch to zoom. A completed job swaps in the detailed mesh.</p>
+    </div>
+    <div class="card">
+      <div class="icon">🎨</div>
+      <h3>Color relief</h3>
+      <p>10 m ESA WorldCover 2021 maps tree cover, bare ground, snow or ice, and water to editable forest, rock, snow, and water colors, stored as standard 3MF triangle colors.</p>
+    </div>
+    <div class="card">
+      <div class="icon">🛣️</div>
+      <h3>Roads &amp; water</h3>
+      <p>Draws motorway, trunk, primary, and secondary roads as print-safe vector lines, with rivers, streams, and canals flush to the terrain. Bridges deck across ravines instead of dropping in.</p>
+    </div>
+    <div class="card">
+      <div class="icon">🏙️</div>
+      <h3>Buildings</h3>
+      <p>Raises OpenStreetMap footprints by tagged height, then floor count, then an 8 m default — with their own editable roof-and-wall material and straight mapped edges.</p>
+    </div>
+    <div class="card">
+      <div class="icon">🖨️</div>
+      <h3>Print-ready formats</h3>
+      <p>Exports binary STL and standards-based 3MF with per-triangle colors. Roads rise by one configurable print layer; STL stays single-color but keeps the raised geometry.</p>
+    </div>
+    <div class="card">
+      <div class="icon">💾</div>
+      <h3>Local-first &amp; resilient</h3>
+      <p>SQLite job state, one-request-per-second place search, and a second public Overpass instance on failure. Partial or timed-out responses are never cached.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <p class="eyebrow">Surface controls</p>
+  <h2>Tune colors and layers without leaving the workspace.</h2>
+  <p class="sub">Overlay detail is separate from the base terrain setting, so roads, buildings, water, and land-cover boundaries get a finer mesh without forcing it on plain terrain jobs.</p>
+  <figure class="feature-shot">
+    <img src="assets/toposaic-surface-controls.png" alt="TopoSaic surface controls for terrain colors and mapped waterways" width="1600">
+    <figcaption>Tune print colors and mapped surface layers beside the live 3D workspace.</figcaption>
+  </figure>
+</section>
+
+<section class="section" id="export">
+  <p class="eyebrow">Three ways to export</p>
+  <h2>Puzzle, solid, or contour tray.</h2>
+  <div class="features">
+    <div class="card">
+      <div class="icon">🧩</div>
+      <h3>Puzzle</h3>
+      <p>Watertight jigsaw pieces from 2×2 to 16×16. Round knobs with narrow necks assemble into the full relief map.</p>
+    </div>
+    <div class="card">
+      <div class="icon">⛰️</div>
+      <h3>Solid terrain</h3>
+      <p>The same mapped relief as one watertight STL and 3MF with a straight outer edge and no puzzle seams, keeping the full sampling grid at a safe mesh detail.</p>
+    </div>
+    <div class="card">
+      <div class="icon">🗺️</div>
+      <h3>Shallow tray</h3>
+      <p>Its own watertight STL and color 3MF: a flat well of smooth equal-height contour inlays, with the place name, latitude, and longitude raised on the front lip in the bundled Atkinson Hyperlegible font.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="download">
+  <p class="eyebrow">Get TopoSaic</p>
+  <h2>Just download the desktop app.</h2>
+  <p class="sub">For almost everyone, this is the way to use TopoSaic: install the desktop app, pick a place, and print a puzzle. It runs the whole engine on your machine — no setup, no terminal, no account. Grab the latest from <a href="https://github.com/theatrus/toposaic/releases">TopoSaic Releases</a>.</p>
+  <div class="install-grid">
+    <div class="card">
+      <h3>🪟 Windows x64</h3>
+      <p class="plat">.exe setup · .msi installer</p>
+      <p>Uses the Universal CRT that Windows 10 and 11 include — no Visual C++ Redistributable. Fetches Microsoft's WebView2 bootstrapper only if the system lacks WebView2.</p>
+    </div>
+    <div class="card">
+      <h3>🍎 macOS (Apple silicon)</h3>
+      <p class="plat">.dmg disk image · .app.zip</p>
+      <p>Ships with an ad-hoc signature for now and is not notarized.</p>
+    </div>
+    <div class="card">
+      <h3>🐧 Linux x86-64</h3>
+      <p class="plat">portable .AppImage</p>
+      <p>Make it executable before opening:</p>
+      <pre><code>chmod +x TopoSaic-*-linux-x86_64.AppImage
+./TopoSaic-*-linux-x86_64.AppImage</code></pre>
+    </div>
+  </div>
+  <p class="callout info">The desktop app keeps SQLite and generated jobs in its standard application-data directory, and opens a native <strong>Save As</strong> dialog for every file — it never drops files into Downloads without asking.</p>
+</section>
+
+<section class="section" id="developers">
+  <p class="eyebrow">For developers</p>
+  <h2>Build from source.</h2>
+  <p class="callout">Most people don't need this — <a href="#download">download the desktop app</a> instead. The steps below are for developers who want to run or modify TopoSaic. Requires Rust 1.96+ and Node.js 22.13+.</p>
+
+  <h3>Web app</h3>
+  <p>Start the Rust API, then the website in a second terminal:</p>
+  <pre><code><span class="c"># terminal 1 — Rust API on http://127.0.0.1:8787</span>
+<span class="p">$</span> cargo run -p terrain-api
+
+<span class="c"># terminal 2 — website on http://127.0.0.1:3100</span>
+<span class="p">$</span> npm install
+<span class="p">$</span> npm run dev</code></pre>
+
+  <h3>Desktop app</h3>
+  <p>The Tauri app starts the Rust engine in-process, so it needs no second terminal:</p>
+  <pre><code><span class="p">$</span> npm install
+<span class="p">$</span> npm run tauri dev      <span class="c"># develop</span>
+<span class="p">$</span> npm run tauri build    <span class="c"># build installers</span></code></pre>
+  <p>Set <code>TERRAIN_DATA_DIR</code> to move SQLite and generated jobs off the default <code>data/</code> directory, and <code>TERRAIN_CACHE_DIR</code> to relocate the downloaded map-tile cache.</p>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="attrib">
+      <h4>Data &amp; attribution</h4>
+      <p>TopoSaic draws on public map data. Publicly shared prints, images, and files must keep the data-source credits recorded in each manifest, or place them near the work.</p>
+      <p>Elevation: <a href="https://github.com/tilezen/joerd/blob/master/docs/attribution.md">Mapzen Terrain Tiles</a> · Land cover: <a href="https://esa-worldcover.org/en/data-access">ESA WorldCover</a> · Roads, water, buildings, and place search: <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> via Overpass &amp; Nominatim.</p>
+    </div>
+    <div class="foot-links">
+      <h4>TopoSaic</h4>
+      <a href="https://github.com/theatrus/toposaic">Source on GitHub</a>
+      <a href="https://github.com/theatrus/toposaic/releases">Downloads &amp; releases</a>
+      <a href="https://github.com/theatrus/toposaic/blob/main/LICENSE">Apache License 2.0</a>
+      <a href="https://github.com/theatrus/toposaic/blob/main/THIRD_PARTY_NOTICES.md">Third-party notices</a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/lightbox.js"></script>
 </body>
 </html>
