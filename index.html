@@ -60,8 +60,8 @@
     <p class="eyebrow" style="margin-top:1rem;">Free desktop app for Windows, macOS &amp; Linux · no setup, no terminal</p>
   </div>
   <figure class="hero-shot">
-    <img src="assets/toposaic-studio.png?v=2" alt="TopoSaic light workspace showing the Mount Rainier map, interactive 3D terrain puzzle preview, and model controls" width="1200">
-    <figcaption>Choose a place beside a live, rotatable preview, then shape the model below.</figcaption>
+    <img src="assets/toposaic-studio.png?v=3" alt="TopoSaic light workspace showing the Mount Rainier map, interactive 3D terrain puzzle preview, and model controls" width="1200">
+    <figcaption>Choose a place beside a live, rotatable preview, then shape the model below — map zoom stays synced to the ground span, and the workspace divider drags to fit.</figcaption>
   </figure>
 </section>
 
@@ -87,7 +87,7 @@
     <div class="card">
       <div class="icon">🌐</div>
       <h3>Worldwide elevation</h3>
-      <p>Reads Mapzen Terrarium tiles from the AWS Open Data registry. Elevation, ESA WorldCover, and OpenStreetMap inputs cache under your OS user cache with atomic writes.</p>
+      <p>Reads Mapzen Terrarium tiles from the AWS Open Data registry, with an optional Mapterhorn source for 512&nbsp;px regional detail up to zoom 17. All inputs cache under your OS user cache with atomic writes.</p>
     </div>
     <div class="card">
       <div class="icon">🛰️</div>
@@ -127,9 +127,36 @@
   <h2>Tune colors and layers without leaving the workspace.</h2>
   <p class="sub">Overlay detail is separate from the base terrain setting, so roads, buildings, water, and land-cover boundaries get a finer mesh without forcing it on plain terrain jobs.</p>
   <figure class="feature-shot">
-    <img src="assets/toposaic-surface-controls.png?v=2" alt="TopoSaic light workspace showing terrain colors, mapped water and road controls, and bridge structure choices" width="1600">
-    <figcaption>Tune print colors, mapped layers, road detail, and bridge structure in place.</figcaption>
+    <img src="assets/toposaic-surface-controls.png?v=3" alt="TopoSaic light workspace showing terrain colors, mapped water and road controls, and bridge structure choices" width="1600">
+    <figcaption>Tune print colors, mapped water, road width and height, dense-network thinning, and floating or supported bridges in place.</figcaption>
   </figure>
+</section>
+
+<section class="section" id="supertile">
+  <p class="eyebrow">Super-tile mode</p>
+  <h2>Bigger than your build plate.</h2>
+  <p class="sub">Export a grid of up to 12×12 print passes as one continuous terrain set. Every tile shares the same elevation datum and vertical scale — the first move locks the height frame, so the same real elevation prints at the same Z on every tile.</p>
+  <figure class="feature-shot">
+    <img src="assets/toposaic-model-controls.png" alt="TopoSaic model controls showing compact model choices and a four-by-three adjacent tile grid" width="1600">
+    <figcaption>Move by one tile with the compass buttons, or export a straight 4×3 mosaic under one shared height frame.</figcaption>
+  </figure>
+  <div class="features">
+    <div class="card">
+      <div class="icon">🧭</div>
+      <h3>Tile by tile, or all at once</h3>
+      <p>North, south, east, and west buttons step the selection one full tile; the auto grid exports every tile in one pass. Straight tile bounds keep the whole set aligned.</p>
+    </div>
+    <div class="card">
+      <div class="icon">🔗</div>
+      <h3>Interlocking edges</h3>
+      <p>Optional external tabs and sockets join shared edges between terrain tiles — the full set still keeps a flat outside border.</p>
+    </div>
+    <div class="card">
+      <div class="icon">🖼️</div>
+      <h3>Split trays</h3>
+      <p>The tray follows the grid: one outer frame, split into matching printable parts with open joined edges — or give each tile its own complete framed tray.</p>
+    </div>
+  </div>
 </section>
 
 <section class="section" id="export">
@@ -152,6 +179,10 @@
       <p>Its own watertight STL and color 3MF: a flat well of smooth equal-height contour inlays, with the place name, latitude, and longitude raised on the front lip in the bundled Atkinson Hyperlegible font.</p>
     </div>
   </div>
+  <figure class="feature-shot">
+    <img src="assets/toposaic-3mf-bambu-studio.jpg" alt="A generated Mount Rainier color 3MF opened in Bambu Studio" width="1600">
+    <figcaption>Straight into the slicer: the exported 3MF keeps the puzzle pieces and their forest, rock, snow, water, road, and building materials ready for a color print.</figcaption>
+  </figure>
 </section>
 
 <section class="section" id="download">
@@ -162,12 +193,12 @@
     <div class="card">
       <h3>🪟 Windows x64</h3>
       <p class="plat">.exe setup · .msi installer</p>
-      <p>Uses the Universal CRT that Windows 10 and 11 include — no Visual C++ Redistributable. Fetches Microsoft's WebView2 bootstrapper only if the system lacks WebView2.</p>
+      <p>Uses the Universal CRT that Windows 10 and 11 include — no Visual C++ Redistributable. GUI subsystem, so no console window ever opens; fetches Microsoft's WebView2 bootstrapper only if the system lacks WebView2.</p>
     </div>
     <div class="card">
       <h3>🍎 macOS (Apple silicon)</h3>
       <p class="plat">.dmg disk image · .app.zip</p>
-      <p>Ships with an ad-hoc signature for now and is not notarized.</p>
+      <p>Signed with a Developer ID certificate, Apple-notarized, with stapled tickets — opens without Gatekeeper warnings.</p>
     </div>
     <div class="card">
       <h3>🐧 Linux x86-64</h3>
@@ -177,7 +208,7 @@
 ./TopoSaic-*-linux-x86_64.AppImage</code></pre>
     </div>
   </div>
-  <p class="callout info">The desktop app keeps SQLite and generated jobs in its standard application-data directory, and opens a native <strong>Save As</strong> dialog for every file — it never drops files into Downloads without asking.</p>
+  <p class="callout info">The desktop app keeps SQLite and generated jobs in its standard application-data directory, and opens a native <strong>Save As</strong> dialog for every file — it never drops files into Downloads without asking. On launch it checks for a newer release and shows a signed update notice; updates install in the app, and the check sends no project or location data.</p>
 </section>
 
 <section class="section" id="developers">
@@ -207,7 +238,7 @@
     <div class="attrib">
       <h4>Data &amp; attribution</h4>
       <p>TopoSaic draws on public map data. Publicly shared prints, images, and files must keep the data-source credits recorded in each manifest, or place them near the work.</p>
-      <p>Elevation: <a href="https://github.com/tilezen/joerd/blob/master/docs/attribution.md">Mapzen Terrain Tiles</a> · Land cover: <a href="https://esa-worldcover.org/en/data-access">ESA WorldCover</a> · Roads, water, buildings, and place search: <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> via Overpass &amp; Nominatim.</p>
+      <p>Elevation: <a href="https://github.com/tilezen/joerd/blob/master/docs/attribution.md">Mapzen Terrain Tiles</a> &amp; <a href="https://mapterhorn.com/attribution/">Mapterhorn</a> · Land cover: <a href="https://esa-worldcover.org/en/data-access">ESA WorldCover</a> · Roads, water, buildings, and place search: <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> via Overpass &amp; Nominatim.</p>
     </div>
     <div class="foot-links">
       <h4>TopoSaic</h4>
