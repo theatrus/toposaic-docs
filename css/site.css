@@ -262,6 +262,39 @@ th { background: rgba(38, 63, 52, .05); font-weight: 700; }
 .footer .foot-links { display: flex; flex-direction: column; gap: .4rem; }
 .footer h4 { font-family: var(--sans); font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin: 0 0 .3rem; }
 
+/* "Made by · see more" — sibling projects */
+.more-projects {
+  max-width: var(--maxw);
+  margin: 2.2rem auto 0;
+  padding-top: 1.9rem;
+  border-top: 1px solid var(--line);
+  text-align: center;
+}
+.more-projects h4 {
+  font-family: var(--sans);
+  font-size: .72rem; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--muted); margin: 0 0 1.2rem;
+}
+.project-links {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  max-width: 48rem; margin: 0 auto;
+}
+.project-links a {
+  display: block; padding: .95rem 1.1rem; text-align: left;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--moss);
+  color: var(--ink);
+}
+.project-links a:nth-child(2) { border-top-color: var(--clay); }
+.project-links a:nth-child(3) { border-top-color: var(--gold); }
+.project-links a:hover { border-color: var(--moss); text-decoration: none; box-shadow: var(--shadow); }
+.project-links strong { display: block; font-family: var(--serif); font-weight: 400; font-size: 1.15rem; }
+.project-links span { display: block; color: var(--muted); font-size: .82rem; margin-top: .25rem; }
+@media (max-width: 640px) { .project-links { grid-template-columns: 1fr; } }
+
 /* ---------- Responsive ---------- */
 @media (max-width: 900px) {
   .hero { grid-template-columns: 1fr; padding-top: 3rem; }
