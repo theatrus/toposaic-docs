@@ -64,7 +64,7 @@
     <p class="eyebrow" style="margin-top:1rem;">Free desktop app for Windows, macOS &amp; Linux · no setup, no terminal</p>
   </div>
   <figure class="hero-shot">
-    <img src="assets/toposaic-studio.png?v=3" alt="TopoSaic light workspace showing the Mount Rainier map, interactive 3D terrain puzzle preview, and model controls" width="1200">
+    <img src="assets/toposaic-studio.png?v=4" alt="TopoSaic light workspace showing the Mount Rainier map, interactive 3D terrain puzzle preview, and model controls" width="1200">
     <figcaption>Choose a place beside a live, rotatable preview, then shape the model below — map zoom stays synced to the ground span, and the workspace divider drags to fit.</figcaption>
   </figure>
 </section>
@@ -91,12 +91,12 @@
     <div class="card">
       <div class="icon">🌐</div>
       <h3>Worldwide elevation</h3>
-      <p>Reads Mapzen Terrarium tiles from the AWS Open Data registry, with an optional Mapterhorn source for 512&nbsp;px regional detail up to zoom 17. All inputs cache under your OS user cache with atomic writes.</p>
+      <p>Reads Mapzen Terrarium tiles from the AWS Open Data registry, or Mapterhorn regional tiles up to zoom 17 — with a finest-detail mode that targets 0.25&nbsp;m samples for areas up to 2&nbsp;km wide. All inputs cache locally with atomic writes.</p>
     </div>
     <div class="card">
       <div class="icon">🛰️</div>
       <h3>Live 3D relief preview</h3>
-      <p>A lit height mesh appears after a 64×64 sample settles — drag or use the arrow keys to orbit, scroll or pinch to zoom. A completed job swaps in the detailed mesh.</p>
+      <p>A lit height mesh appears after a 64×64 sample settles — drag to orbit, scroll or pinch to zoom. It shows the terrain height at true print scale, oriented to match the map, and a completed job swaps in the detailed mesh.</p>
     </div>
     <div class="card">
       <div class="icon">🎨</div>
@@ -129,7 +129,7 @@
 <section class="section">
   <p class="eyebrow">Surface controls</p>
   <h2>Tune colors and layers without leaving the workspace.</h2>
-  <p class="sub">Overlay detail is separate from the base terrain setting, so roads, buildings, water, and land-cover boundaries get a finer mesh without forcing it on plain terrain jobs.</p>
+  <p class="sub">One mesh budget spans the assembled model: Draft, Standard, High, and Ultra run 384 to 2,048 samples across it, so adding puzzle pieces never multiplies the density — and vector roads, water, and building edges add local mesh points only where they need them.</p>
   <figure class="feature-shot">
     <img src="assets/toposaic-surface-controls.png?v=3" alt="TopoSaic light workspace showing terrain colors, mapped water and road controls, and bridge structure choices" width="1600">
     <figcaption>Tune print colors, mapped water, road width and height, dense-network thinning, and floating or supported bridges in place.</figcaption>
@@ -139,10 +139,10 @@
 <section class="section" id="supertile">
   <p class="eyebrow">Super-tile mode</p>
   <h2>Bigger than your build plate.</h2>
-  <p class="sub">Export a grid of up to 12×12 print passes as one continuous terrain set. Every tile shares the same elevation datum and vertical scale — the first move locks the height frame, so the same real elevation prints at the same Z on every tile.</p>
+  <p class="sub">Export a grid of up to 12×12 print passes as one continuous terrain set. The map draws the full grid before export — anchored at the top-left or center tile — and every tile shares the same elevation datum and vertical scale: the first move locks the height frame, so the same real elevation prints at the same Z on every tile.</p>
   <figure class="feature-shot">
-    <img src="assets/toposaic-model-controls.png" alt="TopoSaic model controls showing compact model choices and a four-by-three adjacent tile grid" width="1600">
-    <figcaption>Move by one tile with the compass buttons, or export a straight 4×3 mosaic under one shared height frame.</figcaption>
+    <img src="assets/toposaic-model-controls.png?v=2" alt="TopoSaic model controls showing boxed map coordinates and a four-by-three super-tile grid" width="1600">
+    <figcaption>Set the map center beside the full super-tile controls, then export a straight 4×3 mosaic under one shared height frame. Center anchoring keeps a real tile at the chosen point.</figcaption>
   </figure>
   <div class="features">
     <div class="card">
@@ -185,7 +185,7 @@
   </div>
   <figure class="feature-shot">
     <img src="assets/toposaic-3mf-bambu-studio.jpg" alt="A generated Mount Rainier color 3MF opened in Bambu Studio" width="1600">
-    <figcaption>Straight into the slicer: the exported 3MF keeps the puzzle pieces and their forest, rock, snow, water, road, and building materials ready for a color print.</figcaption>
+    <figcaption>Straight into the slicer: the exported 3MF keeps the puzzle pieces and their forest, rock, snow, water, road, and building materials — Bambu Studio and OrcaSlicer load the six palette colors as filament assignments.</figcaption>
   </figure>
 </section>
 
