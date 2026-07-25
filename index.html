@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>TopoSaic — turn any place into a printable topographic puzzle</title>
-  <meta name="description" content="TopoSaic is a local-first topographic puzzle generator. Pick a place, tune the relief, colors, roads, and water, and export watertight jigsaw pieces, a solid model, or a contour tray as print-ready STL and 3MF.">
+  <meta name="description" content="TopoSaic is a free desktop app that turns real terrain into printable topographic puzzles. Pick a place, tune the relief, colors, roads, and water, and export watertight jigsaw pieces, a solid model, or a contour tray as print-ready STL and 3MF.">
   <link rel="icon" type="image/png" href="assets/logo.png">
   <link rel="stylesheet" href="css/site.css?v=3">
   <meta property="og:title" content="TopoSaic">
-  <meta property="og:description" content="A local-first topographic puzzle generator. Choose a place, tune the printable model, and export watertight STL and color 3MF.">
+  <meta property="og:description" content="A free desktop app that turns real terrain into printable puzzles. Pick a place, tune the model, and export watertight STL and color 3MF.">
   <meta property="og:image" content="https://toposaic.com/assets/og.png?v=2">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -50,11 +50,10 @@
     <img class="hero-logo" src="assets/logo.png" alt="TopoSaic logo">
     <h1>Turn any place into a<br><span class="grad">printable topographic puzzle.</span></h1>
     <p class="lede">
-      TopoSaic is a local-first topographic puzzle generator. A Rust service
-      samples worldwide elevation data, builds watertight pieces with round
-      jigsaw tabs and sockets, and stores job state in SQLite. The web app lets
-      you choose a place and tune the printable model — mesh detail, surface
-      colors, roads, water, and buildings — beside a live 3D preview.
+      TopoSaic is a free desktop app that turns real terrain into printable
+      puzzles. Pick a place, shape the model beside a live 3D preview — relief,
+      colors, roads, water, buildings — and export watertight jigsaw pieces as
+      STL and color 3MF. Everything runs on your machine.
     </p>
     <div class="btn-row">
       <a class="btn primary" href="https://github.com/theatrus/toposaic/releases">Download the app</a>
@@ -71,10 +70,9 @@
 
 <div class="strip">
   <p class="strip-inner">
-    <strong>Local-first, from map to model.</strong> The Rust engine samples
-    global elevation, drapes it in real land cover, roads, and water, and writes
-    watertight meshes straight to your disk — nothing leaves your machine but the
-    public map tiles it fetches.
+    <strong>Local-first, from map to model.</strong> TopoSaic downloads public
+    map tiles, builds the model on your machine, and saves files where you
+    choose. No account, no upload — nothing leaves your computer.
   </p>
 </div>
 
@@ -91,22 +89,22 @@
     <div class="card">
       <div class="icon">🌐</div>
       <h3>Worldwide elevation</h3>
-      <p>Reads Mapzen Terrarium tiles from the AWS Open Data registry, or Mapterhorn regional tiles up to zoom 17 — with a finest-detail mode that targets 0.25&nbsp;m samples for areas up to 2&nbsp;km wide. All inputs cache locally with atomic writes.</p>
+      <p>Worldwide Mapzen elevation, plus sharper Mapterhorn regional tiles with a finest-detail mode that targets 0.25&nbsp;m samples for areas up to 2&nbsp;km wide. Every download caches on your machine.</p>
     </div>
     <div class="card">
       <div class="icon">🛰️</div>
       <h3>Live 3D relief preview</h3>
-      <p>A lit height mesh appears after a 64×64 sample settles — drag to orbit, scroll or pinch to zoom. It shows the terrain height at true print scale, oriented to match the map, and a completed job swaps in the detailed mesh.</p>
+      <p>A preview appears in seconds — drag to orbit, scroll or pinch to zoom. It shows terrain height at true print scale, oriented to match the map, and swaps in the full-detail mesh when the job finishes.</p>
     </div>
     <div class="card">
       <div class="icon">🎨</div>
       <h3>Color relief</h3>
-      <p>10 m ESA WorldCover 2021 maps tree cover, bare ground, snow or ice, and water to editable forest, rock, snow, and water colors, stored as standard 3MF triangle colors.</p>
+      <p>10&nbsp;m ESA WorldCover satellite data paints the model: tree cover, bare ground, snow, and water become editable forest, rock, snow, and water colors in the exported 3MF.</p>
     </div>
     <div class="card">
       <div class="icon">🛣️</div>
       <h3>Roads &amp; water</h3>
-      <p>Draws motorway, trunk, primary, and secondary roads as print-safe vector lines, with rivers, streams, and canals flush to the terrain. Bridges deck across ravines instead of dropping in.</p>
+      <p>Pick a road detail level — major roads, minor roads, local streets, or every path and trail — or let automatic mode add more as the area shrinks. Rivers, streams, and canals sit flush with the terrain, and bridges deck across ravines instead of dropping in.</p>
     </div>
     <div class="card">
       <div class="icon">🏙️</div>
@@ -121,7 +119,7 @@
     <div class="card">
       <div class="icon">💾</div>
       <h3>Local-first &amp; resilient</h3>
-      <p>SQLite job state, one-request-per-second place search, and a second public Overpass instance on failure. Partial or timed-out responses are never cached.</p>
+      <p>Jobs and map downloads live in a local database. If a map service fails, TopoSaic tries a second public server — and it never caches a partial download.</p>
     </div>
   </div>
 </section>
@@ -129,17 +127,17 @@
 <section class="section">
   <p class="eyebrow">Surface controls</p>
   <h2>Tune colors and layers without leaving the workspace.</h2>
-  <p class="sub">One mesh budget spans the assembled model: Draft, Standard, High, and Ultra run 384 to 2,048 samples across it, so adding puzzle pieces never multiplies the density — and vector roads, water, and building edges add local mesh points only where they need them.</p>
+  <p class="sub">One mesh budget covers the whole model: Draft, Standard, High, and Ultra run 384 to 2,048 samples across it. Adding puzzle pieces never multiplies the density, and roads, water, and building edges add mesh points only where they need them.</p>
   <figure class="feature-shot">
     <img src="assets/toposaic-surface-controls.png?v=3" alt="TopoSaic light workspace showing terrain colors, mapped water and road controls, and bridge structure choices" width="1600">
-    <figcaption>Tune print colors, mapped water, road width and height, dense-network thinning, and floating or supported bridges in place.</figcaption>
+    <figcaption>Tune print colors, mapped water, road detail and width, dense-network thinning, and floating or supported bridges in place.</figcaption>
   </figure>
 </section>
 
 <section class="section" id="supertile">
   <p class="eyebrow">Super-tile mode</p>
   <h2>Bigger than your build plate.</h2>
-  <p class="sub">Export a grid of up to 12×12 print passes as one continuous terrain set. The map draws the full grid before export — anchored at the top-left or center tile — and every tile shares the same elevation datum and vertical scale: the first move locks the height frame, so the same real elevation prints at the same Z on every tile.</p>
+  <p class="sub">Export a grid of up to 12×12 print passes as one continuous terrain set. The map draws the full grid before export, anchored at the top-left or center tile. Every tile shares the same elevation datum and vertical scale, so the same real elevation prints at the same height on every tile.</p>
   <figure class="feature-shot">
     <img src="assets/toposaic-model-controls.png?v=2" alt="TopoSaic model controls showing boxed map coordinates and a four-by-three super-tile grid" width="1600">
     <figcaption>Set the map center beside the full super-tile controls, then export a straight 4×3 mosaic under one shared height frame. Center anchoring keeps a real tile at the chosen point.</figcaption>
@@ -175,12 +173,12 @@
     <div class="card">
       <div class="icon">⛰️</div>
       <h3>Solid terrain</h3>
-      <p>The same mapped relief as one watertight STL and 3MF with a straight outer edge and no puzzle seams, keeping the full sampling grid at a safe mesh detail.</p>
+      <p>The same mapped relief as one watertight STL and 3MF, with a straight outer edge and no puzzle seams.</p>
     </div>
     <div class="card">
       <div class="icon">🗺️</div>
       <h3>Shallow tray</h3>
-      <p>Its own watertight STL and color 3MF: a flat well of smooth equal-height contour inlays, with the place name, latitude, and longitude raised on the front lip in the bundled Atkinson Hyperlegible font.</p>
+      <p>A flat well of smooth, equal-height contour inlays, with the place name and coordinates raised on the front lip. Exports its own watertight STL and color 3MF.</p>
     </div>
   </div>
   <figure class="feature-shot">
@@ -192,7 +190,7 @@
 <section class="section" id="download">
   <p class="eyebrow">Get TopoSaic</p>
   <h2>Just download the desktop app.</h2>
-  <p class="sub">For almost everyone, this is the way to use TopoSaic: install the desktop app, pick a place, and print a puzzle. It runs the whole engine on your machine — no setup, no terminal, no account. Grab the latest from <a href="https://github.com/theatrus/toposaic/releases">TopoSaic Releases</a>.</p>
+  <p class="sub">Install the app, pick a place, and print a puzzle. The whole engine runs on your machine — no setup, no terminal, no account. Grab the latest from <a href="https://github.com/theatrus/toposaic/releases">TopoSaic Releases</a>.</p>
   <div class="install-grid">
     <div class="card">
       <h3>🪟 Windows x64</h3>
@@ -220,8 +218,8 @@
   <h2>Build from source.</h2>
   <p class="callout">Most people don't need this — <a href="#download">download the desktop app</a> instead. The steps below are for developers who want to run or modify TopoSaic. Requires Rust 1.96+ and Node.js 22.13+.</p>
 
-  <h3>Web app</h3>
-  <p>Start the Rust API, then the website in a second terminal:</p>
+  <h3>Browser dev mode</h3>
+  <p>Start the Rust API, then the web UI in a second terminal:</p>
   <pre><code><span class="c"># terminal 1 — Rust API on http://127.0.0.1:8787</span>
 <span class="p">$</span> cargo run -p terrain-api
 
