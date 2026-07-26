@@ -1,9 +1,0 @@
-{
-  "schema_version": 1,
-  "version": "0.4.0",
-  "release_url": "https://github.com/theatrus/toposaic/releases/tag/v0.4.0",
-  "summary": "A new TopoSaic release is ready.",
-  "urgency": "normal",
-  "minimum_supported_version": "0.1.0",
-  "published_at": "2026-07-26T05:39:07Z"
-}
