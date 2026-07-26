@@ -52,19 +52,20 @@
     <p class="lede">
       TopoSaic is a free desktop app that turns real terrain into printable
       puzzles. Pick a place, shape the model beside a live 3D preview — relief,
-      colors, roads, water, buildings — and export watertight jigsaw pieces as
-      STL and color 3MF. Everything runs on your machine.
+      colors, roads, railways, lifts, trails, water, buildings — and export
+      watertight jigsaw pieces as STL and color 3MF. Everything runs on your
+      machine.
     </p>
     <div class="btn-row">
       <a class="btn primary" href="https://github.com/theatrus/toposaic/releases">Download the app</a>
       <a class="btn" href="#features">See what it makes</a>
       <a class="btn" href="https://github.com/theatrus/toposaic">Source on GitHub</a>
     </div>
-    <p class="eyebrow" style="margin-top:1rem;">Free desktop app for Windows, macOS &amp; Linux · no setup, no terminal</p>
+    <p class="eyebrow" style="margin-top:1rem;">TopoSaic v0.4 · Windows, macOS &amp; Linux · no setup, no terminal</p>
   </div>
   <figure class="hero-shot">
-    <img src="assets/toposaic-studio.png?v=4" alt="TopoSaic light workspace showing the Mount Rainier map, interactive 3D terrain puzzle preview, and model controls" width="1200">
-    <figcaption>Choose a place beside a live, rotatable preview, then shape the model below — map zoom stays synced to the ground span, and the workspace divider drags to fit.</figcaption>
+    <img src="assets/toposaic-studio.png?v=5" alt="TopoSaic v0.4 workspace showing the Mount Rainier map, interactive 3D terrain puzzle preview, and model controls" width="1200">
+    <figcaption>Choose a place beside a live, rotatable preview, then shape the model below. Resize the map, preview, and controls to fit the job.</figcaption>
   </figure>
 </section>
 
@@ -103,8 +104,8 @@
     </div>
     <div class="card">
       <div class="icon">🛣️</div>
-      <h3>Roads &amp; water</h3>
-      <p>Pick a road detail level — major roads, minor roads, local streets, or every path and trail — or let automatic mode add more as the area shrinks. Rivers, streams, and canals sit flush with the terrain, and bridges deck across ravines instead of dropping in.</p>
+      <h3>Mapped lines &amp; water</h3>
+      <p>Choose road detail, draw railways and aerial lifts as separate layers, or import GPX and KML trails. Rivers, streams, and canals sit flush with the terrain; bridges span ravines instead of dropping into them.</p>
     </div>
     <div class="card">
       <div class="icon">🏙️</div>
@@ -118,19 +119,19 @@
     </div>
     <div class="card">
       <div class="icon">💾</div>
-      <h3>Local-first &amp; resilient</h3>
-      <p>Jobs and map downloads live in a local database. If a map service fails, TopoSaic tries a second public server — and it never caches a partial download.</p>
+      <h3>Saved, local, resilient</h3>
+      <p>Save named setups, move them between machines as JSON, and inspect or clear each map cache. Jobs and downloads stay local; failed map requests never become valid cache entries.</p>
     </div>
   </div>
 </section>
 
 <section class="section">
   <p class="eyebrow">Surface controls</p>
-  <h2>Tune colors and layers without leaving the workspace.</h2>
-  <p class="sub">One mesh budget covers the whole model: Draft, Standard, High, and Ultra run 384 to 2,048 samples across it. Adding puzzle pieces never multiplies the density, and roads, water, and building edges add mesh points only where they need them.</p>
+  <h2>Put each mapped line where it belongs.</h2>
+  <p class="sub">Roads, railways, aerial lifts, imported trails, and water have their own controls. Fold rail and lift colors into another layer when filament slots matter, or keep each one distinct.</p>
   <figure class="feature-shot">
-    <img src="assets/toposaic-surface-controls.png?v=3" alt="TopoSaic light workspace showing terrain colors, mapped water and road controls, and bridge structure choices" width="1600">
-    <figcaption>Tune print colors, mapped water, road detail and width, dense-network thinning, and floating or supported bridges in place.</figcaption>
+    <img src="assets/toposaic-layer-controls.png?v=1" alt="TopoSaic v0.4 controls showing roads, bridges, railways, and aerial lifts" width="1600">
+    <figcaption>Tune road detail and height, floating or supported bridges, railways, aerial lifts, and their print colors in one place.</figcaption>
   </figure>
 </section>
 
@@ -139,7 +140,7 @@
   <h2>Bigger than your build plate.</h2>
   <p class="sub">Export a grid of up to 12×12 print passes as one continuous terrain set. The map draws the full grid before export, anchored at the top-left or center tile. Every tile shares the same elevation datum and vertical scale, so the same real elevation prints at the same height on every tile.</p>
   <figure class="feature-shot">
-    <img src="assets/toposaic-model-controls.png?v=2" alt="TopoSaic model controls showing boxed map coordinates and a four-by-three super-tile grid" width="1600">
+    <img src="assets/toposaic-model-controls.png?v=3" alt="TopoSaic v0.4 map and model controls showing a four-by-three super-tile grid" width="1600">
     <figcaption>Set the map center beside the full super-tile controls, then export a straight 4×3 mosaic under one shared height frame. Center anchoring keeps a real tile at the chosen point.</figcaption>
   </figure>
   <div class="features">
@@ -182,8 +183,12 @@
     </div>
   </div>
   <figure class="feature-shot">
+    <img src="assets/toposaic-output-controls.png?v=1" alt="TopoSaic v0.4 output tab showing project, painted, and geometry-only 3MF modes" width="1600">
+    <figcaption>Export a full slicer project, painted colors without imported presets, or a plain geometry-only 3MF.</figcaption>
+  </figure>
+  <figure class="feature-shot">
     <img src="assets/toposaic-3mf-bambu-studio.jpg" alt="A generated Mount Rainier color 3MF opened in Bambu Studio" width="1600">
-    <figcaption>Straight into the slicer: the exported 3MF keeps the puzzle pieces and their forest, rock, snow, water, road, and building materials — Bambu Studio and OrcaSlicer load the six palette colors as filament assignments.</figcaption>
+    <figcaption>Straight into the slicer: project output keeps the pieces, mapped materials, filament colors, and purge settings for Bambu Studio and OrcaSlicer.</figcaption>
   </figure>
 </section>
 
@@ -221,7 +226,7 @@
   <h3>Browser dev mode</h3>
   <p>Start the Rust API, then the web UI in a second terminal:</p>
   <pre><code><span class="c"># terminal 1 — Rust API on http://127.0.0.1:8787</span>
-<span class="p">$</span> cargo run -p terrain-api
+<span class="p">$</span> cargo run -p toposaic-api
 
 <span class="c"># terminal 2 — website on http://127.0.0.1:3100</span>
 <span class="p">$</span> npm install
@@ -232,7 +237,7 @@
   <pre><code><span class="p">$</span> npm install
 <span class="p">$</span> npm run tauri dev      <span class="c"># develop</span>
 <span class="p">$</span> npm run tauri build    <span class="c"># build installers</span></code></pre>
-  <p>Set <code>TERRAIN_DATA_DIR</code> to move SQLite and generated jobs off the default <code>data/</code> directory, and <code>TERRAIN_CACHE_DIR</code> to relocate the downloaded map-tile cache.</p>
+  <p>Set <code>TOPOSAIC_DATA_DIR</code> to move SQLite and generated jobs off the default data directory, and <code>TOPOSAIC_CACHE_DIR</code> to relocate the downloaded map cache.</p>
 </section>
 
 <footer class="footer">
@@ -240,7 +245,7 @@
     <div class="attrib">
       <h4>Data &amp; attribution</h4>
       <p>TopoSaic draws on public map data. Publicly shared prints, images, and files must keep the data-source credits recorded in each manifest, or place them near the work.</p>
-      <p>Elevation: <a href="https://github.com/tilezen/joerd/blob/master/docs/attribution.md">Mapzen Terrain Tiles</a> &amp; <a href="https://mapterhorn.com/attribution/">Mapterhorn</a> · Land cover: <a href="https://esa-worldcover.org/en/data-access">ESA WorldCover</a> · Roads, water, buildings, and place search: <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> via Overpass &amp; Nominatim.</p>
+      <p>Elevation: <a href="https://github.com/tilezen/joerd/blob/master/docs/attribution.md">Mapzen Terrain Tiles</a> &amp; <a href="https://mapterhorn.com/attribution/">Mapterhorn</a> · Land cover: <a href="https://esa-worldcover.org/en/data-access">ESA WorldCover</a> · Roads, railways, lifts, water, buildings, and place search: <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> via Overpass &amp; Nominatim.</p>
     </div>
     <div class="foot-links">
       <h4>TopoSaic</h4>
