@@ -24,6 +24,25 @@
     gtag('js', new Date());
     gtag('config', 'GT-55KX8TLW');
   </script>
+  <!-- Event snippet for Outbound click conversion; call gtag_report_conversion(url) from a Download/GitHub link's onclick -->
+  <script>
+  function gtag_report_conversion(url) {
+    var done = false;
+    var go = function () {
+      if (done) return;
+      done = true;
+      if (typeof(url) !== 'undefined') { window.location = url; }
+    };
+    gtag('event', 'conversion', {
+        'send_to': 'AW-18350477381/HrJRCK_V6NYcEMWgmK5E',
+        'value': 1.0,
+        'currency': 'USD',
+        'event_callback': go
+    });
+    setTimeout(go, 1000);
+    return false;
+  }
+  </script>
 </head>
 <body>
 
@@ -38,8 +57,8 @@
       <a href="#features" class="keep">Features</a>
       <a href="#export">Export</a>
       <a href="#developers">Developers</a>
-      <a href="https://github.com/theatrus/toposaic">GitHub</a>
-      <a class="cta" href="https://github.com/theatrus/toposaic/releases">Download</a>
+      <a href="https://github.com/theatrus/toposaic" onclick="return gtag_report_conversion('https://github.com/theatrus/toposaic')">GitHub</a>
+      <a class="cta" href="https://github.com/theatrus/toposaic/releases" onclick="return gtag_report_conversion('https://github.com/theatrus/toposaic/releases')">Download</a>
     </div>
   </nav>
 </header>
@@ -57,9 +76,9 @@
       machine.
     </p>
     <div class="btn-row">
-      <a class="btn primary" href="https://github.com/theatrus/toposaic/releases">Download the app</a>
+      <a class="btn primary" href="https://github.com/theatrus/toposaic/releases" onclick="return gtag_report_conversion('https://github.com/theatrus/toposaic/releases')">Download the app</a>
       <a class="btn" href="#features">See what it makes</a>
-      <a class="btn" href="https://github.com/theatrus/toposaic">Source on GitHub</a>
+      <a class="btn" href="https://github.com/theatrus/toposaic" onclick="return gtag_report_conversion('https://github.com/theatrus/toposaic')">Source on GitHub</a>
     </div>
     <p class="eyebrow" style="margin-top:1rem;">TopoSaic v0.4 · Windows, macOS &amp; Linux</p>
   </div>
@@ -195,7 +214,7 @@
 <section class="section" id="download">
   <p class="eyebrow">Get TopoSaic</p>
   <h2>Just download the desktop app.</h2>
-  <p class="sub">Install the app, pick a place, and print a puzzle. The whole engine runs on your machine with no account. Grab the latest from <a href="https://github.com/theatrus/toposaic/releases">TopoSaic Releases</a>.</p>
+  <p class="sub">Install the app, pick a place, and print a puzzle. The whole engine runs on your machine with no account. Grab the latest from <a href="https://github.com/theatrus/toposaic/releases" onclick="return gtag_report_conversion('https://github.com/theatrus/toposaic/releases')">TopoSaic Releases</a>.</p>
   <div class="install-grid">
     <div class="card">
       <h3>🪟 Windows x64</h3>
@@ -249,8 +268,8 @@
     </div>
     <div class="foot-links">
       <h4>TopoSaic</h4>
-      <a href="https://github.com/theatrus/toposaic">Source on GitHub</a>
-      <a href="https://github.com/theatrus/toposaic/releases">Downloads &amp; releases</a>
+      <a href="https://github.com/theatrus/toposaic" onclick="return gtag_report_conversion('https://github.com/theatrus/toposaic')">Source on GitHub</a>
+      <a href="https://github.com/theatrus/toposaic/releases" onclick="return gtag_report_conversion('https://github.com/theatrus/toposaic/releases')">Downloads &amp; releases</a>
       <a href="https://github.com/theatrus/toposaic/blob/main/LICENSE">Apache License 2.0</a>
       <a href="https://github.com/theatrus/toposaic/blob/main/THIRD_PARTY_NOTICES.md">Third-party notices</a>
     </div>

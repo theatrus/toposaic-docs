@@ -14,6 +14,25 @@
     gtag('js', new Date());
     gtag('config', 'GT-55KX8TLW');
   </script>
+  <!-- Event snippet for Outbound click conversion; call gtag_report_conversion(url) from a Download/GitHub link's onclick -->
+  <script>
+  function gtag_report_conversion(url) {
+    var done = false;
+    var go = function () {
+      if (done) return;
+      done = true;
+      if (typeof(url) !== 'undefined') { window.location = url; }
+    };
+    gtag('event', 'conversion', {
+        'send_to': 'AW-18350477381/HrJRCK_V6NYcEMWgmK5E',
+        'value': 1.0,
+        'currency': 'USD',
+        'event_callback': go
+    });
+    setTimeout(go, 1000);
+    return false;
+  }
+  </script>
 </head>
 <body>
 <header class="site-header">
@@ -25,7 +44,7 @@
     <div class="nav-links">
       <a href="/#features" class="keep">Features</a>
       <a href="/#download">Download</a>
-      <a class="cta" href="https://github.com/theatrus/toposaic">GitHub</a>
+      <a class="cta" href="https://github.com/theatrus/toposaic" onclick="return gtag_report_conversion('https://github.com/theatrus/toposaic')">GitHub</a>
     </div>
   </nav>
 </header>
