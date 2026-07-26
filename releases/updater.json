@@ -1,0 +1,19 @@
+{
+  "version": "0.4.0",
+  "notes": "A new TopoSaic release is ready.",
+  "pub_date": "2026-07-26T05:39:07Z",
+  "platforms": {
+    "windows-x86_64": {
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVUUU5wVFNld0lRbUwxV0U2Ung4bHVhYkorTkw5bncvMlcvdzRLV1JONkcyL3d5WXdDVUtPK3VzbThwV29XSUlKZWN2SWljazFpZFlhQ0tRbTBERXB0YXp4eFRSeFdIdEFrPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg1MDQ0MTMwCWZpbGU6VG9wb1NhaWNfMC40LjBfeDY0LXNldHVwLmV4ZQo1SXhIekkxS25NV0NMWXpPeTRMdXMwd29QdHMzVExycnQyVFZqZjF2TjBQa2VLRUliVjJjTmQ4djdSaXoxazZ3SXI1WmdSVSt2dUxHbk5Kd3NncFJBZz09Cg==",
+      "url": "https://github.com/theatrus/toposaic/releases/download/v0.4.0/TopoSaic-0.4.0-windows-x64.exe"
+    },
+    "linux-x86_64": {
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVUUU5wVFNld0lRbUlvOENiSFpWNDNmWjMzUlBYRzI0b21IblhicnZhS0tyNVE1cUVpdzRwMWgwb3R1TDlDa1RiMy85QzAwczl4VWRMVkZMSWVSS1ZhQVFETis5a2JISGc4PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg1MDQ0MTEyCWZpbGU6VG9wb1NhaWNfMC40LjBfYW1kNjQuQXBwSW1hZ2UKMzdHRWJFY3NmSTRaWjRKMmhycHJIRTc4SUtmcHVheTNjTVhYeCtqOW9iOWQ0eDJUV3Rtc2Vnd2ZxUWRLRGE3N2E4MHJUQzVUdG05UERzNDBSbE9UQnc9PQo=",
+      "url": "https://github.com/theatrus/toposaic/releases/download/v0.4.0/TopoSaic-0.4.0-linux-x86_64.AppImage"
+    },
+    "darwin-aarch64": {
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVUUU5wVFNld0lRbUdEK2ZDY3h5cmt4d01mSnVCM0t6QTBHOWd2cG1kWkR3UXArM3JNTHI2TlhZS1RLUTJLR3g0THZYSVFZL3hmdmhRNzFkVEZtQ1FDdHhpZjRmWWtzelFrPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg1MDQ0Mjk1CWZpbGU6VG9wb1NhaWMuYXBwLnRhci5negpITHk2czk0N2FnK3dVelZKdFZ4TkxpVDVJTExScXczUnlQU2N5dlFZWWVOeHMwS2pxY0Y5b3lpbktZNTNZMFRpQ1pxRjFEbnBxdnlTbkZqYzcrZk1BUT09Cg==",
+      "url": "https://github.com/theatrus/toposaic/releases/download/v0.4.0/TopoSaic-0.4.0-macos-aarch64.app.tar.gz"
+    }
+  }
+}
