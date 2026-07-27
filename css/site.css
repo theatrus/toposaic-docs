@@ -187,6 +187,7 @@ th { background: rgba(38, 63, 52, .05); font-weight: 700; }
   gap: 1.1rem;
   margin-top: 2rem;
 }
+.wall-features { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .card {
   background: var(--panel);
   border: 1px solid var(--line);
@@ -304,7 +305,7 @@ th { background: rgba(38, 63, 52, .05); font-weight: 700; }
 /* ---------- Responsive ---------- */
 @media (max-width: 900px) {
   .hero { grid-template-columns: 1fr; padding-top: 3rem; }
-  .shot-pair, .gallery { grid-template-columns: 1fr; }
+  .shot-pair, .gallery, .wall-features { grid-template-columns: 1fr; }
   .footer-inner { grid-template-columns: 1fr; }
 }
 @media (max-width: 560px) {
