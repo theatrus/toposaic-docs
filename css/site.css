@@ -205,6 +205,12 @@ th { background: rgba(38, 63, 52, .05); font-weight: 700; }
   gap: 1.1rem;
   margin: 1.8rem 0;
 }
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.1rem;
+  margin: 1.8rem 0;
+}
 .shot-pair figure, .gallery figure, .feature-shot { margin: 0; }
 .shot-pair img, .gallery img, .feature-shot img {
   border: 1px solid var(--line-strong);
@@ -298,7 +304,7 @@ th { background: rgba(38, 63, 52, .05); font-weight: 700; }
 /* ---------- Responsive ---------- */
 @media (max-width: 900px) {
   .hero { grid-template-columns: 1fr; padding-top: 3rem; }
-  .shot-pair { grid-template-columns: 1fr; }
+  .shot-pair, .gallery { grid-template-columns: 1fr; }
   .footer-inner { grid-template-columns: 1fr; }
 }
 @media (max-width: 560px) {
