@@ -62,8 +62,19 @@
   <p class="sub">Every build for Windows, macOS, and Linux is on the <a href="https://github.com/theatrus/toposaic/releases" onclick="return gtag_report_conversion('https://github.com/theatrus/toposaic/releases')">GitHub releases page</a>. The desktop app checks for a newer version on launch and can install it in place.</p>
 </section>
 
-<section class="section" id="v0-6-0">
+<section class="section" id="v0-6-1">
   <p class="eyebrow">Current · 28 July 2026</p>
+  <h2>Version 0.6.1</h2>
+  <p class="sub">One fix: printed pieces no longer wear a grey outline around every edge.</p>
+
+  <h3>The terrain color bleeds over a piece's edge</h3>
+  <p>A piece's side wall is a cut through the terrain, and it printed in the rock color from the base right up to the rim. Seen from anything but straight above, that drew a grey outline around every piece — worst on hills, where the wall is tallest and faces you.</p>
+  <p>The top of the wall now carries the land cover from the surface directly above, so the color runs over the rim and around the tabs instead of stopping dead at the top edge. Below the band the cut face is still rock, because a cut through a hill is rock.</p>
+  <p><strong>Edge color bleed</strong> on the Surface tab sets how deep the band runs, from 0 to 2&nbsp;mm, starting at 0.4&nbsp;mm — two layers at the usual 0.2&nbsp;mm layer height. Set it to a whole number of the layers you slice at, so the band ends on a layer boundary rather than part way through one. Zero turns it off and gives back the plain rock wall.</p>
+</section>
+
+<section class="section" id="v0-6-0">
+  <p class="eyebrow">28 July 2026</p>
   <h2>Version 0.6.0</h2>
   <p class="sub">Filament slots you can actually load, two new things to put on a map, and a way to save a whole job in one step.</p>
 

@@ -171,6 +171,7 @@
     <p><strong>Match the road height to your layer height.</strong> TopoSaic raises roads by one print layer, 0.2 mm by default and settable from 0.08 to 0.4 mm on the Surface tab. Slice at 0.12 mm without changing it and a road is 1.67 layers — the slicer rounds, and the crisp one-layer color change turns ragged. Set the road height to whatever you slice at and it stays one clean layer.</p>
     <p>Variable layer height pulls against this, since the height is no longer one number. If sharp roads matter more than smooth slopes, set the road height to the thinnest layer in the range, or slice at a fixed height instead.</p>
   </div>
+  <p>One more setting counts in layers. <strong>Edge color bleed</strong>, on the Surface tab, carries the terrain color a little way down each piece's side wall so the wall's rock color does not draw a grey outline around every piece. It starts at 0.4 mm — two layers at 0.2 mm — and wants a whole number of the layers you slice at, so the band ends on a layer boundary.</p>
   <p>Layer height changes nothing about the colors — the palette, the slots, and the import all work the same at any height.</p>
 </section>
 
