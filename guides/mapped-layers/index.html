@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Choosing what the map draws — TopoSaic</title>
+  <meta name="description" content="How TopoSaic's mapped layers work: roads, railways, aerial lifts, ferries, imported GPX and KML trails, water, buildings, and markers — what each one covers, what it costs in filament, and how to fold two layers into one color.">
+  <link rel="icon" type="image/png" href="/assets/logo.png">
+  <link rel="stylesheet" href="/css/site.css?v=6">
+  <link rel="canonical" href="https://toposaic.com/guides/mapped-layers/">
+  <meta property="og:title" content="Choosing what the TopoSaic map draws">
+  <meta property="og:description" content="Roads, railways, lifts, ferries, trails, water, buildings, and markers — and what each costs in filament.">
+  <meta property="og:image" content="https://toposaic.com/assets/og.png?v=2">
+  <meta property="og:url" content="https://toposaic.com/guides/mapped-layers/">
+  <meta property="og:type" content="article">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://toposaic.com/assets/og.png?v=2">
+  <!-- Event snippet for Outbound click conversion; call gtag_report_conversion(url) from a Download/GitHub link's onclick -->
+  <script>
+  function gtag_report_conversion(url) {
+    var done = false;
+    var go = function () {
+      if (done) return;
+      done = true;
+      if (typeof(url) !== 'undefined') { window.location = url; }
+    };
+    gtag('event', 'conversion', {
+        'send_to': 'AW-18350477381/HrJRCK_V6NYcEMWgmK5E',
+        'value': 1.0,
+        'currency': 'USD',
+        'event_callback': go
+    });
+    setTimeout(go, 1000);
+    return false;
+  }
+  </script>
+</head>
+<body>
+
+<!-- site-header:start -->
+<header class="site-header">
+  <nav class="nav" aria-label="Primary navigation">
+    <a class="brand" href="/">
+      <img src="/assets/logo.png" alt="">
+      <span>TopoSaic<small>Terrain Puzzle</small></span>
+    </a>
+    <div class="nav-links">
+      <a href="/#features" class="keep">Features</a>
+      <a href="/#export">Export</a>
+      <a href="/guides/">Guides</a>
+      <a href="/releases/">Releases</a>
+      <a href="https://github.com/theatrus/toposaic" onclick="return gtag_report_conversion('https://github.com/theatrus/toposaic')">GitHub</a>
+      <a class="cta" href="https://github.com/theatrus/toposaic/releases" onclick="return gtag_report_conversion('https://github.com/theatrus/toposaic/releases')">Download</a>
+    </div>
+  </nav>
+</header>
+<!-- site-header:end -->
+
+<section class="section guide-head">
+  <p class="eyebrow">Guide</p>
+  <h1>Choosing what the map draws.</h1>
+  <p class="sub">A ski map wants lifts and no trains. A city map wants trains and no lifts. An island map wants the ferry. The Surface tab decides which mapped features reach the model — and because filament slots are handed out only to layers that draw something, switching one off is never wasted, and switching one on costs nothing where the map has none.</p>
+</section>
+
+<section class="section">
+  <h2>What each layer covers</h2>
+  <p>Every layer below has its own map download and its own cache, so switching one never re-fetches the others.</p>
+  <table>
+    <thead>
+      <tr><th>Layer</th><th>What it draws</th><th>Default color</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Roads</strong></td>
+        <td>Streets at your chosen detail level. Where no road crosses the area, paths and trails stand in.</td>
+        <td>Route</td>
+      </tr>
+      <tr>
+        <td><strong>Railways</strong></td>
+        <td>Heavy rail, light rail, metros, trams, narrow gauge, funiculars, monorails, and miniature and preserved lines.</td>
+        <td>Steel blue-grey</td>
+      </tr>
+      <tr>
+        <td><strong>Aerial lifts</strong></td>
+        <td>Cable cars, gondolas, mixed lifts, chair lifts, drag lifts, T-bars, platters, rope tows, and magic carpets.</td>
+        <td>Signal violet</td>
+      </tr>
+      <tr>
+        <td><strong>Ferries</strong></td>
+        <td>Every crossing OpenStreetMap tags <code>route=ferry</code>, raised across the water like a road.</td>
+        <td>Deep teal</td>
+      </tr>
+      <tr>
+        <td><strong>Trails</strong></td>
+        <td>Your own GPX and KML routes, one line per track.</td>
+        <td>High-vis magenta</td>
+      </tr>
+      <tr>
+        <td><strong>Water</strong></td>
+        <td>Rivers, streams, canals, and mapped water areas, flush with the terrain.</td>
+        <td>Water</td>
+      </tr>
+      <tr>
+        <td><strong>Buildings</strong></td>
+        <td>OpenStreetMap footprints raised above the ground, with straight mapped edges.</td>
+        <td>Building</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>Line width follows the kind of line: a mainline railway gets a full-width formation, a rope tow gets a cable. Ferries carry none of that machinery — a crossing has no gauge — so they draw at one width.</p>
+  <div class="callout info">
+    <p><strong>Nothing is reserved.</strong> A layer only asks for a filament when the mapped area really contains that feature. A city with no cable cars is never asked for a cable-car spool; an inland map never spends one on ferries. The same goes for the base colors — a wilderness map with no water, roads, or buildings asks for none of the three.</p>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Folding two layers into one color</h2>
+  <p>When your printer has fewer spools than the map has features, a layer can borrow another layer's color instead of switching off. Each toggle carries its own style picker.</p>
+  <ul class="tight">
+    <li><strong>Own color</strong> — the default everywhere. The color swatch and width slider appear under it.</li>
+    <li><strong>Draw with roads</strong> — available to railways, lifts, and ferries. The layer prints in the route color at the route width, so it still shows, and costs no extra filament.</li>
+    <li><strong>Draw with railways</strong> — lifts only. Lifts and trains share one color. With the railway layer switched off, this falls back to the road color rather than making an enabled layer vanish.</li>
+  </ul>
+  <p>The 3D legend names whatever the model actually shows. A layer drawn in its own color gets its own entry; a layer that borrowed one is named by the entry it borrowed — so lifts following separately colored railways appear under Rail, and anything drawn with roads appears under Route.</p>
+  <div class="callout">
+    <p><strong>Sharing a color is not the same as sharing a slot.</strong> Folding a layer in is a Surface-tab decision about what the model draws. Two <em>separate</em> layers set to the same hex value in the Colors tab also share one filament — see the <a href="/guides/color-printing/">color printing guide</a>. Either route saves a spool.</p>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Bridges, tunnels, and lines out of use</h2>
+  <p>Roads and railways tagged as bridges get a deck interpolated between their end heights, so a viaduct spans the ravine instead of dropping into it. Tunnels vanish, as they should — which takes most metros with them. Untagged roads follow the terrain, and OpenStreetMap's <code>layer=*</code> is not read as a height. Ferries have neither: a crossing is on the water for its whole length.</p>
+  <p>Roads, railways, lifts, ferries, and trails all rise above the terrain by one print layer — 0.2 mm by default, settable from 0.08 to 0.4 mm. Set it to whatever layer height you slice at, so the line stays exactly one clean layer; the <a href="/guides/color-printing/#layer-height">layer height section</a> of the color guide covers why.</p>
+  <p>One <strong>Railway and lift history</strong> picker governs both of those layers, and shows whenever either is on.</p>
+  <table>
+    <thead>
+      <tr><th>Setting</th><th>What it adds</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Operational</strong><br><span class="muted-cell">the default</span></td><td>Running lines only.</td></tr>
+      <tr><td><strong>Disused</strong></td><td>Track and lift lines still in place but out of use — rails, ties, ballast, cable, and pylons all still there.</td></tr>
+      <tr><td><strong>Abandoned</strong></td><td>Those, plus lines whose rails have been lifted but whose formation still reads in the landscape: embankments, cuttings, a dead-straight trackbed, the cleared swath of an old lift line.</td></tr>
+    </tbody>
+  </table>
+  <p>Out-of-service lines print thinner than running ones, and lifted formations thinner again — a scar, not a track. Lines tagged razed, dismantled, demolished, removed, or historic are never drawn at any setting, because nothing is left on the ground to print; neither are proposed or under-construction lines, because nothing is there yet.</p>
+  <p>Ferries have no history setting, because OpenStreetMap has no convention of disused ferry routes.</p>
+</section>
+
+<section class="section">
+  <h2>How much water to keep</h2>
+  <p>A map of a river delta can hold more mapped stream than terrain. The waterway coverage cutoff sets how much of it prints: rivers and canals are always kept, then the longest streams are kept until their estimated printed area reaches the share you chose.</p>
+  <ul class="tight">
+    <li><strong>0%</strong> — major waterways only.</li>
+    <li><strong>100%</strong> — every mapped stream.</li>
+    <li>Mapped water <em>areas</em> — lakes, reservoirs, wide rivers — ignore the cutoff entirely.</li>
+  </ul>
+  <p>OpenStreetMap water can be switched off on its own without hiding the satellite-derived WorldCover water underneath it.</p>
+</section>
+
+<section class="section">
+  <h2>Buildings</h2>
+  <p>Building mode raises OpenStreetMap footprints above the terrain, using each one's tagged height first, then its floor count, then an 8 m default. In color output, roofs and walls print in their own editable building material rather than inheriting the land-cover color under the footprint.</p>
+  <p>Its Z scale exaggerates that height against the map's plan scale, and the exaggeration eases back to true height as the ground span narrows. That is deliberate: the plan scale itself grows as you close in, so a multiplier that makes a 100 m tower a readable 5 mm across 18 km would make a 200 m tower 72 mm across 2.5 km — taller than the whole terrain relief. Close in, buildings are tall enough to read without help.</p>
+</section>
+
+<section class="section">
+  <h2>Trails you bring yourself</h2>
+  <p>The Surface tab imports GPX and KML files. Each track, route, LineString, or <code>gx:Track</code> becomes one trail, named from the file and drawn as a raised line like a road.</p>
+  <ul class="tight">
+    <li>Trails have their own color and their own width slider.</li>
+    <li>They show on the map preview and in the 3D legend.</li>
+    <li>They live in the model spec, so saved setups and exported setup files carry them.</li>
+    <li>Files are parsed in the browser. Tracks longer than 20,000 points are thinned on import, and a model holds up to 20 trails.</li>
+  </ul>
+</section>
+
+<section class="section">
+  <h2>Markers</h2>
+  <p>Markers are placed by latitude and longitude rather than drawn from map data, so they mark the things a map does not know about — where you camped, where the route crosses, whose house that is.</p>
+  <div class="features">
+    <div class="card">
+      <div class="icon">🏠</div>
+      <h3>Building highlights</h3>
+      <p>Pick out one footprint in a color of its own, so a single building reads against the block around it.</p>
+    </div>
+    <div class="card">
+      <div class="icon">🔴</div>
+      <h3>Dots and blank flags</h3>
+      <p>A color dot on the surface, or a raised blank flag you can see from across the room.</p>
+    </div>
+    <div class="card">
+      <div class="icon">🚩</div>
+      <h3>Named flags</h3>
+      <p>Embossed text in a bundled font, with the banner width, height, and text size under your control.</p>
+    </div>
+    <div class="card">
+      <div class="icon">🔤</div>
+      <h3>Surface labels and plaques</h3>
+      <p>A label can follow the terrain, or sit on a raised plaque that gives the text a flat backing. Each has its own print size and map rotation.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Next</h2>
+  <p class="sub">Once the model draws what you want: the <a href="/guides/color-printing/">color printing guide</a> covers turning those layers into filament slots your printer can load, and <a href="/guides/setups-and-files/">saving setups and files</a> covers keeping the setup you arrived at.</p>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="attrib">
+      <h4>Data &amp; attribution</h4>
+      <p>TopoSaic draws on public map data. Publicly shared prints, images, and files must keep the data-source credits recorded in each manifest, or place them near the work.</p>
+      <p>Elevation: <a href="https://github.com/tilezen/joerd/blob/master/docs/attribution.md">Mapzen Terrain Tiles</a> &amp; <a href="https://mapterhorn.com/attribution/">Mapterhorn</a> · Land cover: <a href="https://esa-worldcover.org/en/data-access">ESA WorldCover</a> · Roads, railways, lifts, water, buildings, and place search: <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> via Overpass &amp; Nominatim.</p>
+    </div>
+    <div class="foot-links">
+      <h4>TopoSaic</h4>
+      <a href="/">Home</a>
+      <a href="/guides/">Guides</a>
+      <a href="https://github.com/theatrus/toposaic" onclick="return gtag_report_conversion('https://github.com/theatrus/toposaic')">Source on GitHub</a>
+      <a href="https://github.com/theatrus/toposaic/releases" onclick="return gtag_report_conversion('https://github.com/theatrus/toposaic/releases')">Downloads &amp; releases</a>
+      <a href="https://github.com/theatrus/toposaic/blob/main/LICENSE">Apache License 2.0</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

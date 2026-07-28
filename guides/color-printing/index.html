@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Color printing guide — TopoSaic</title>
-  <meta name="description" content="How to set up colors in TopoSaic and get them into Bambu Studio or OrcaSlicer: which 3MF style to export, how to pick filament presets and slot numbers, and how to stop Bambu's import dialog from piling up duplicate filaments.">
+  <meta name="description" content="How to set up colors in TopoSaic and get them into Bambu Studio or OrcaSlicer: which 3MF style to export, how to pick filament presets and slot numbers, how to stop Bambu's import dialog from piling up duplicate filaments, and what layer height to slice terrain at.">
   <link rel="icon" type="image/png" href="/assets/logo.png">
   <link rel="stylesheet" href="/css/site.css?v=6">
   <link rel="canonical" href="https://toposaic.com/guides/color-printing/">
@@ -47,7 +47,8 @@
     <div class="nav-links">
       <a href="/#features" class="keep">Features</a>
       <a href="/#export">Export</a>
-      <a href="/guides/color-printing/">Color guide</a>
+      <a href="/guides/">Guides</a>
+      <a href="/releases/">Releases</a>
       <a href="https://github.com/theatrus/toposaic" onclick="return gtag_report_conversion('https://github.com/theatrus/toposaic')">GitHub</a>
       <a class="cta" href="https://github.com/theatrus/toposaic/releases" onclick="return gtag_report_conversion('https://github.com/theatrus/toposaic/releases')">Download</a>
     </div>
@@ -58,7 +59,7 @@
 <section class="section guide-head">
   <p class="eyebrow">Guide</p>
   <h1>Printing your map in color.</h1>
-  <p class="sub">A TopoSaic model can print in anything from one color to eleven. This guide covers setting the palette, choosing which filament each layer prints from, and getting all of it into Bambu Studio or OrcaSlicer without a fight.</p>
+  <p class="sub">A TopoSaic model can print in anything from one color to eleven. This guide covers setting the palette, choosing which filament each layer prints from, getting all of it into Bambu Studio or OrcaSlicer without a fight, and picking a layer height that suits terrain.</p>
 </section>
 
 <section class="section">
@@ -144,6 +145,36 @@
 </section>
 
 <section class="section">
+  <h2 id="layer-height">6. Set the layer height</h2>
+  <p>Terrain is one long slope, which is the shape layer lines show up on worst: a shallow hillside slices into wide steps, and the steps read as contour rings the map never asked for. Layer height is the setting that fixes it, and the setting that costs the most time.</p>
+  <table>
+    <thead>
+      <tr><th>Layer height</th><th>What you get</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>0.2 mm</strong><br><span class="muted-cell">most slicer defaults</span></td>
+        <td>Fast, and fine on steep ground. Shallow slopes and summits show stepping.</td>
+      </tr>
+      <tr>
+        <td><strong>0.08–0.12 mm</strong></td>
+        <td>Smooth relief everywhere. Print time roughly doubles going from 0.2 mm to 0.1 mm.</td>
+      </tr>
+      <tr>
+        <td><strong>Variable, or adaptive</strong></td>
+        <td>Thin layers where the surface is near-flat and thick ones on steep faces. Most of the smoothness, a fraction of the time.</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>Both Bambu Studio and OrcaSlicer can vary layer height across a model rather than holding one for the whole print, deciding per layer from how steep the surface is there. Terrain is exactly the case it was built for: the flat summits and valley floors that step worst get the thin layers, and the steep faces where a layer line is nearly invisible get the thick ones. On a relief map it is usually the better trade than simply slicing the whole thing thin.</p>
+  <div class="callout info">
+    <p><strong>Match the road height to your layer height.</strong> TopoSaic raises roads by one print layer, 0.2 mm by default and settable from 0.08 to 0.4 mm on the Surface tab. Slice at 0.12 mm without changing it and a road is 1.67 layers — the slicer rounds, and the crisp one-layer color change turns ragged. Set the road height to whatever you slice at and it stays one clean layer.</p>
+    <p>Variable layer height pulls against this, since the height is no longer one number. If sharp roads matter more than smooth slopes, set the road height to the thinnest layer in the range, or slice at a fixed height instead.</p>
+  </div>
+  <p>Layer height changes nothing about the colors — the palette, the slots, and the import all work the same at any height.</p>
+</section>
+
+<section class="section">
   <h2>Other slicers and tools</h2>
   <p><strong>Geometry only</strong> writes a plain standards-based 3MF: the core-spec color group and nothing vendor-specific. That is the one channel non-slicer 3MF tools read, so use it for viewers, mesh editors, and anything outside the Bambu and Orca family.</p>
 </section>
@@ -171,6 +202,11 @@
         <td>Reorder the layers in the Colors tab to match your loaded spools, or remap in the slicer</td>
       </tr>
       <tr>
+        <td>Shallow slopes print as visible steps, like contour rings</td>
+        <td>The layer height is coarse against a nearly flat surface</td>
+        <td>Slice thinner, or turn on variable layer height</td>
+      </tr>
+      <tr>
         <td>The model arrives with no colors at all</td>
         <td>Geometry only, or Painted colors opened by a tool that reads neither channel</td>
         <td>Export as Color project</td>
@@ -190,6 +226,7 @@
     <div class="foot-links">
       <h4>TopoSaic</h4>
       <a href="/">Home</a>
+      <a href="/guides/">Guides</a>
       <a href="https://github.com/theatrus/toposaic" onclick="return gtag_report_conversion('https://github.com/theatrus/toposaic')">Source on GitHub</a>
       <a href="https://github.com/theatrus/toposaic/releases" onclick="return gtag_report_conversion('https://github.com/theatrus/toposaic/releases')">Downloads &amp; releases</a>
       <a href="https://github.com/theatrus/toposaic/blob/main/LICENSE">Apache License 2.0</a>
