@@ -1,0 +1,83 @@
+---
+title: Elevation and detail — TopoSaic
+description: Where TopoSaic's elevation comes from and how much detail to ask for: Mapzen and Mapterhorn tiles, the finest-detail mode for small areas, what Draft through Ultra actually change, and why the surface is curved between readings rather than stepped.
+ogTitle: TopoSaic elevation and detail
+ogDescription: Elevation sources, detail levels, and what each one costs in print time.
+ogType: article
+url: /guides/terrain-detail/
+sitemap: yes
+updated: 2026-07-28
+---
+
+<section class="section guide-head">
+  <p class="eyebrow">Guide</p>
+  <h1>Elevation, and how much detail to ask for.</h1>
+  <p class="sub">Two settings decide how sharp a model is: where the elevation comes from, and how finely the mesh samples it. Turning both up is not always better — past the point where the source data runs out, you are only adding triangles.</p>
+</section>
+
+<section class="section">
+  <h2>Where the elevation comes from</h2>
+  <table>
+    <thead>
+      <tr><th>Source</th><th>What it gives</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Mapzen</strong><br><span class="muted-cell">the default</span></td>
+        <td>Terrarium tiles, worldwide. Works anywhere on Earth.</td>
+      </tr>
+      <tr>
+        <td><strong>Mapterhorn</strong></td>
+        <td>512&nbsp;px WebP Terrarium tiles with regional data as fine as zoom 17. Outside that coverage it falls back to lower-zoom Mapterhorn tiles rather than failing.</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>For an area up to 2&nbsp;km wide there is a third choice: <strong>finest detail</strong>. It probes what Mapterhorn actually holds for that spot and targets 0.25&nbsp;m samples. It stays under 2,048 samples across the model, and — the part that matters — it does not invent mesh points beyond the detail it found. Where the data is coarse, asking for finest detail changes nothing.</p>
+  <div class="callout info">
+    <p><strong>Detail you ask for is not detail you get.</strong> Elevation data has a real resolution, and no setting adds information that is not in it. The settings decide how much of what exists reaches the print.</p>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Between the readings</h2>
+  <p>Close views ask for more samples than the source holds. What happens between two real readings is therefore a choice, and it shows.</p>
+  <p>TopoSaic runs a Catmull-Rom curve across the lattice of tiles that answered, clamped to the readings around it so the surface never overshoots into terrain that is not there. The straight-line alternative prints those readings as flat, pixel-sized facets all hinged along the tile grid — a hillside that looks quilted rather than smooth.</p>
+</section>
+
+<section class="section">
+  <h2>How much mesh to spend</h2>
+  <p>Mesh detail is one budget spread across the whole assembled model, not per piece. Adding puzzle pieces does not multiply the density, and solid terrain matches puzzle output at the same setting.</p>
+  <table>
+    <thead>
+      <tr><th>Setting</th><th>Samples across the model</th><th>Use it for</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Draft</strong></td><td>384</td><td>Trying a place out. Also what generated browser previews use.</td></tr>
+      <tr><td><strong>Standard</strong></td><td>640</td><td>Most prints.</td></tr>
+      <tr><td><strong>High</strong></td><td>1,024</td><td>Relief worth looking at closely.</td></tr>
+      <tr><td><strong>Ultra</strong></td><td>2,048</td><td>0.2&nbsp;mm nozzles, resin, or a small high-detail area.</td></tr>
+    </tbody>
+  </table>
+  <p>Ultra makes roughly four times the surface triangles of High. On a large grid that is a long slice and a large file, so it earns its place on small areas and fine nozzles rather than by default.</p>
+  <p>Roads, waterways, and building edges are vectors, not samples: they add points exactly where they need them, at any detail level. A Draft model still has clean road edges.</p>
+</section>
+
+<section class="section">
+  <h2>The live preview</h2>
+  <p>Once the place or the ground span has been still for about half a second, the preview asks for a 64×64 elevation sample — enough to show real relief in the pane long before a full job runs. It reads the same tile cache generation does, so nothing is downloaded twice, and a finished job replaces it with the detailed generated preview.</p>
+  <p>Drag or use the arrow keys to orbit; scroll, pinch, or use the plus and minus keys to zoom.</p>
+</section>
+
+<section class="section">
+  <h2>What gets cached</h2>
+  <p>Elevation tiles, land cover, and OpenStreetMap responses are cached under your machine's user cache directory. Nothing expires on its own — clearing is a deliberate act in the settings pane, by age or all at once.</p>
+  <p>OpenStreetMap entries keep the <em>raw</em> response rather than a processed one. That is why changing road width, density, color, or which layers are visible re-renders from what you already have instead of asking the network again.</p>
+  <p>For a request that is not cached, the service tries a second public Overpass instance when the first refuses or cannot answer, then remembers which one worked for next time. If both fail, generation carries on without that layer — you still get terrain and land-cover water rather than an error. A response that arrives with a timeout remark buried in it is rejected rather than cached, so a partial building set never becomes the version you keep.</p>
+</section>
+
+<section class="section">
+  <h2>Next</h2>
+  <p class="sub">Detail settled: <a href="/guides/mapped-layers/">choosing what the map draws</a> covers the features laid over the terrain, and <a href="/guides/super-tiles/">printing bigger than your build plate</a> covers spreading one landscape across several passes.</p>
+</section>
+
+{{footer}}

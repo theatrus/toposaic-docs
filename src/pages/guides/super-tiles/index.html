@@ -1,0 +1,114 @@
+---
+title: Printing bigger than your build plate — TopoSaic
+description: How TopoSaic's super-tile mode splits a landscape across up to 12x12 print passes: anchoring the grid, locking the shared elevation datum, stepping tile by tile, joining edges, and splitting the tray to match.
+ogTitle: Printing a TopoSaic map bigger than your build plate
+ogDescription: Super-tile mode, the shared elevation datum, and how to keep tiles printed months apart matching.
+ogType: article
+url: /guides/super-tiles/
+sitemap: yes
+updated: 2026-07-28
+---
+
+<section class="section guide-head">
+  <p class="eyebrow">Guide</p>
+  <h1>Printing bigger than your build plate.</h1>
+  <p class="sub">A mountain range does not fit on a 256 mm bed. Super-tile mode splits one landscape across a grid of print passes — up to 12×12 of them — and keeps every tile part of the same model rather than a separate map that happens to sit next to it.</p>
+</section>
+
+<section class="section">
+  <h2>1. Set the grid</h2>
+  <p>Give the model a grid of rows and columns and the map draws the whole thing before you export anything, so you can see what you are committing to. Each terrain tile becomes its own color 3MF, one print pass each.</p>
+  <p>Where the grid sits depends on the anchor:</p>
+  <div class="features">
+    <div class="card">
+      <div class="icon">📍</div>
+      <h3>Top-left</h3>
+      <p>The point you chose becomes the grid's top-left corner and the rest extends south and east from it.</p>
+    </div>
+    <div class="card">
+      <div class="icon">🎯</div>
+      <h3>Center</h3>
+      <p>The point you chose lands in the middle tile. Odd row and column counts keep a real tile there rather than a seam.</p>
+    </div>
+  </div>
+  <p>Tile bounds are straight, so the grid stays aligned however large it grows, and the finished set keeps a flat outside border.</p>
+</section>
+
+<section class="section">
+  <h2>2. Let the first tile set the datum</h2>
+  <p>This is the part that makes a super-tile a model rather than a mosaic.</p>
+  <div class="callout info">
+    <p><strong>Every tile shares one elevation datum and one vertical scale.</strong> The first move locks them. From then on the same real elevation prints at the same height on every tile, so a ridge that crosses a seam arrives at the same height on both sides of it.</p>
+  </div>
+  <p>If a later tile turns out to contain ground below that datum — a valley floor deeper than anything the first tile held — TopoSaic says so. It tells you the shared datum has to move down, and that the tiles you already generated have to be made again against the new one. It will not quietly rescale the new tile to fit, because that is the one outcome that cannot be printed into a matching set.</p>
+  <p>The practical order, then: start at the lowest ground you intend to print, not the summit.</p>
+</section>
+
+<section class="section">
+  <h2>3. Step tile by tile</h2>
+  <p>North, south, east, and west move the selection exactly one tile. Generate, print, step, repeat — you do not have to export the whole grid at once, and a set can be printed over weeks.</p>
+  <p>For a set printed over that kind of stretch, the thing to keep is the setup. Saving it stores a stable puzzle seed and the tile's signed coordinates, which is what lets a run months later cut edges that still match the tiles already on the wall. Reach for <a href="/guides/setups-and-files/">a saved setup</a> rather than retyping the numbers.</p>
+</section>
+
+<section class="section">
+  <h2>4. Join the edges, or don't</h2>
+  <p>Shared edges between terrain tiles can carry external tabs and sockets, so the tiles clip together instead of merely abutting. They are optional and off to start.</p>
+  <ul class="tight">
+    <li><strong>On</strong> — tiles lock to their neighbours. Worth it for anything handled or hung.</li>
+    <li><strong>Off</strong> — tiles simply sit edge to edge. Simpler to print, and the flat outer border of the set is unaffected either way.</li>
+  </ul>
+</section>
+
+<section class="section">
+  <h2>5. Split the tray to match</h2>
+  <p>A tray follows the same grid, and there are two ways to take it.</p>
+  <table>
+    <thead>
+      <tr><th>Option</th><th>What you get</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>One split frame</strong></td>
+        <td>A single outer frame cut into matching printable parts. Edges that join another part have no wall, so the finished frame reads as one piece. Each part exports its own STL and color 3MF, and can carry tabs and sockets like the terrain.</td>
+      </tr>
+      <tr>
+        <td><strong>Separate trays</strong></td>
+        <td>Each terrain tile gets its own complete framed tray. Use it when the tiles are meant to stand alone rather than assemble into one panel.</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>French-cleat jobs also print a thin alignment spacer with matching screw pilots. Place the frames edge to edge with it before you fix anything to the wall — it is far easier than aligning a 3×3 panel by eye.</p>
+</section>
+
+<section class="section">
+  <h2>What to watch</h2>
+  <table>
+    <thead>
+      <tr><th>What you see</th><th>What happened</th><th>Fix</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>A warning that the shared datum must move down</td>
+        <td>A later tile holds ground lower than the first tile did</td>
+        <td>Accept the new datum and regenerate the earlier tiles; they will not match otherwise</td>
+      </tr>
+      <tr>
+        <td>Seams that step up or down where tiles meet</td>
+        <td>Tiles were generated against different datums or vertical scales</td>
+        <td>Regenerate the whole set from one setup</td>
+      </tr>
+      <tr>
+        <td>Edges that do not clip together on a set printed months apart</td>
+        <td>The puzzle seed changed between runs</td>
+        <td>Recall the saved setup rather than rebuilding the model by hand</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="section">
+  <h2>Next</h2>
+  <p class="sub">A grid multiplies print time, so it is worth settling the model first: <a href="/guides/terrain-detail/">elevation and detail</a> covers how much of that time buys visible relief, and <a href="/guides/color-printing/">printing in color</a> covers the filament side.</p>
+</section>
+
+{{footer}}
