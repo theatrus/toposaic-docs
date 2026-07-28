@@ -329,6 +329,55 @@ th { background: rgba(38, 63, 52, .05); font-weight: 700; }
   .nav-links a.nav-mid { display: none; }
 }
 
+/* A three-column table on a phone gets about ninety pixels a column, which
+   no one can read, and it cannot scroll sideways either. Each row becomes
+   its own block instead, every cell carrying the heading that explained it
+   — build.mjs writes those into data-label from the header row. The header
+   row itself stays in the document for screen readers rather than being
+   thrown away. */
+@media (max-width: 680px) {
+  .section table { border: 0; font-size: .92rem; }
+  .section thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .section tr {
+    display: block;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-top: 3px solid var(--moss);
+    margin-bottom: .85rem;
+  }
+  .section td {
+    display: block;
+    border: 0;
+    border-top: 1px solid var(--line);
+    padding: .6rem .9rem;
+  }
+  .section tr td:first-child { border-top: 0; }
+  .section td::before {
+    content: attr(data-label);
+    display: block;
+    font-size: .66rem;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: .2rem;
+  }
+  /* Nothing to label, so nothing to show. */
+  .section td:not([data-label])::before { content: none; }
+}
+
+/* The two-line brand wordmark wraps on a narrow phone. */
+@media (max-width: 420px) {
+  .brand small { display: none; }
+}
+
 /* ---------- Lightbox ---------- */
 .lb-zoomable { cursor: zoom-in; }
 .lightbox {

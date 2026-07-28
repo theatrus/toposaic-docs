@@ -7,7 +7,7 @@
   <title>Choosing what the map draws — TopoSaic</title>
   <meta name="description" content="How TopoSaic's mapped layers work: roads, railways, aerial lifts, ferries, imported GPX and KML trails, water, buildings, and markers — what each one covers, what it costs in filament, and how to fold two layers into one color.">
   <link rel="icon" type="image/png" href="/assets/logo.png">
-  <link rel="stylesheet" href="/css/site.css?v=eff4970b">
+  <link rel="stylesheet" href="/css/site.css?v=4dd5aceb">
   <link rel="canonical" href="https://toposaic.com/guides/mapped-layers/">
   <meta property="og:title" content="Choosing what the TopoSaic map draws">
   <meta property="og:description" content="Roads, railways, lifts, ferries, trails, water, buildings, and markers — and what each costs in filament.">
@@ -76,39 +76,39 @@
     </thead>
     <tbody>
       <tr>
-        <td><strong>Roads</strong></td>
-        <td>Streets at your chosen detail level. Where no road crosses the area, paths and trails stand in.</td>
-        <td>Route</td>
+        <td data-label="Layer"><strong>Roads</strong></td>
+        <td data-label="What it draws">Streets at your chosen detail level. Where no road crosses the area, paths and trails stand in.</td>
+        <td data-label="Default color">Route</td>
       </tr>
       <tr>
-        <td><strong>Railways</strong></td>
-        <td>Heavy rail, light rail, metros, trams, narrow gauge, funiculars, monorails, and miniature and preserved lines.</td>
-        <td>Steel blue-grey</td>
+        <td data-label="Layer"><strong>Railways</strong></td>
+        <td data-label="What it draws">Heavy rail, light rail, metros, trams, narrow gauge, funiculars, monorails, and miniature and preserved lines.</td>
+        <td data-label="Default color">Steel blue-grey</td>
       </tr>
       <tr>
-        <td><strong>Aerial lifts</strong></td>
-        <td>Cable cars, gondolas, mixed lifts, chair lifts, drag lifts, T-bars, platters, rope tows, and magic carpets.</td>
-        <td>Signal violet</td>
+        <td data-label="Layer"><strong>Aerial lifts</strong></td>
+        <td data-label="What it draws">Cable cars, gondolas, mixed lifts, chair lifts, drag lifts, T-bars, platters, rope tows, and magic carpets.</td>
+        <td data-label="Default color">Signal violet</td>
       </tr>
       <tr>
-        <td><strong>Ferries</strong></td>
-        <td>Every crossing OpenStreetMap tags <code>route=ferry</code>, raised across the water like a road.</td>
-        <td>Deep teal</td>
+        <td data-label="Layer"><strong>Ferries</strong></td>
+        <td data-label="What it draws">Every crossing OpenStreetMap tags <code>route=ferry</code>, raised across the water like a road.</td>
+        <td data-label="Default color">Deep teal</td>
       </tr>
       <tr>
-        <td><strong>Trails</strong></td>
-        <td>Your own GPX and KML routes, one line per track.</td>
-        <td>High-vis magenta</td>
+        <td data-label="Layer"><strong>Trails</strong></td>
+        <td data-label="What it draws">Your own GPX and KML routes, one line per track.</td>
+        <td data-label="Default color">High-vis magenta</td>
       </tr>
       <tr>
-        <td><strong>Water</strong></td>
-        <td>Rivers, streams, canals, and mapped water areas, flush with the terrain.</td>
-        <td>Water</td>
+        <td data-label="Layer"><strong>Water</strong></td>
+        <td data-label="What it draws">Rivers, streams, canals, and mapped water areas, flush with the terrain.</td>
+        <td data-label="Default color">Water</td>
       </tr>
       <tr>
-        <td><strong>Buildings</strong></td>
-        <td>OpenStreetMap footprints raised above the ground, with straight mapped edges.</td>
-        <td>Building</td>
+        <td data-label="Layer"><strong>Buildings</strong></td>
+        <td data-label="What it draws">OpenStreetMap footprints raised above the ground, with straight mapped edges.</td>
+        <td data-label="Default color">Building</td>
       </tr>
     </tbody>
   </table>
@@ -142,9 +142,9 @@
       <tr><th>Setting</th><th>What it adds</th></tr>
     </thead>
     <tbody>
-      <tr><td><strong>Operational</strong><br><span class="muted-cell">the default</span></td><td>Running lines only.</td></tr>
-      <tr><td><strong>Disused</strong></td><td>Track and lift lines still in place but out of use — rails, ties, ballast, cable, and pylons all still there.</td></tr>
-      <tr><td><strong>Abandoned</strong></td><td>Those, plus lines whose rails have been lifted but whose formation still reads in the landscape: embankments, cuttings, a dead-straight trackbed, the cleared swath of an old lift line.</td></tr>
+      <tr><td data-label="Setting"><strong>Operational</strong><br><span class="muted-cell">the default</span></td><td data-label="What it adds">Running lines only.</td></tr>
+      <tr><td data-label="Setting"><strong>Disused</strong></td><td data-label="What it adds">Track and lift lines still in place but out of use — rails, ties, ballast, cable, and pylons all still there.</td></tr>
+      <tr><td data-label="Setting"><strong>Abandoned</strong></td><td data-label="What it adds">Those, plus lines whose rails have been lifted but whose formation still reads in the landscape: embankments, cuttings, a dead-straight trackbed, the cleared swath of an old lift line.</td></tr>
     </tbody>
   </table>
   <p>Out-of-service lines print thinner than running ones, and lifted formations thinner again — a scar, not a track. Lines tagged razed, dismantled, demolished, removed, or historic are never drawn at any setting, because nothing is left on the ground to print; neither are proposed or under-construction lines, because nothing is there yet.</p>
