@@ -303,14 +303,30 @@ th { background: rgba(38, 63, 52, .05); font-weight: 700; }
 @media (max-width: 640px) { .project-links { grid-template-columns: 1fr; } }
 
 /* ---------- Responsive ---------- */
+/* The two home-page section anchors go first: past eight links the bar runs
+   into the brand and pushes the Download button off the edge. What is left is
+   the same six links the guides have always carried. Its own breakpoint, a
+   little above the layout one, so a wider font fallback cannot close the gap
+   between the brand and the links. */
+@media (max-width: 960px) {
+  .nav-links a.nav-wide { display: none; }
+}
 @media (max-width: 900px) {
   .hero { grid-template-columns: 1fr; padding-top: 3rem; }
   .shot-pair, .gallery, .wall-features { grid-template-columns: 1fr; }
   .footer-inner { grid-template-columns: 1fr; }
 }
-@media (max-width: 560px) {
+/* Six links start pushing the Download button off the edge below about
+   620px, so the bar drops to the destinations that are not sections of the
+   home page: Features, Guides, Changelog, and Download. */
+@media (max-width: 680px) {
   .nav-links { gap: .8rem; }
   .nav-links a:not(.cta):not(.keep) { display: none; }
+}
+/* On a phone even those four overflow. Features and Download are what is
+   left; the rest of the site is a scroll away on any page. */
+@media (max-width: 480px) {
+  .nav-links a.nav-mid { display: none; }
 }
 
 /* ---------- Lightbox ---------- */
