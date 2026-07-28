@@ -81,6 +81,32 @@ function headFor(fields, cssVersion) {
   return lines.join("\n");
 }
 
+/**
+ * Tags every `<td>` with the column heading above it.
+ *
+ * On a phone a three-column table is squeezed to about 90px a column, which
+ * is unreadable, so the stylesheet stacks each row into a block. Stacked
+ * cells lose the header row that explained them, and `data-label` is what
+ * puts it back. Generated here rather than typed into every cell.
+ */
+function labelTableCells(html) {
+  return html.replace(/<table>[\s\S]*?<\/table>/g, (table) => {
+    const headings = [...table.matchAll(/<th>([\s\S]*?)<\/th>/g)].map((m) =>
+      m[1].replace(/<[^>]*>/g, "").trim(),
+    );
+    if (!headings.length) return table;
+    return table.replace(/<tr>[\s\S]*?<\/tr>/g, (row) => {
+      if (row.includes("<th>")) return row;
+      let column = 0;
+      return row.replace(/<td(\s[^>]*)?>/g, (whole, attrs) => {
+        const label = headings[column++];
+        if (!label || (attrs ?? "").includes("data-label=")) return whole;
+        return `<td data-label="${escapeAttribute(label)}"${attrs ?? ""}>`;
+      });
+    });
+  });
+}
+
 async function pageFiles(dir) {
   const found = [];
   for (const entry of await readdir(dir, { withFileTypes: true })) {
@@ -123,7 +149,7 @@ for (const file of await pageFiles(join(src, "pages"))) {
     // Keeps its own leading indentation: it sits inside <head>.
     analytics: analytics.replace(/\s+$/, ""),
     header: header.trim(),
-    content: body.replace("{{footer}}", footer.trim()),
+    content: labelTableCells(body).replace("{{footer}}", footer.trim()),
     scripts: scripts ? `\n${scripts}` : "",
   });
 

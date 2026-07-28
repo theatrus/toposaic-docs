@@ -7,7 +7,7 @@
   <title>Color printing guide — TopoSaic</title>
   <meta name="description" content="How to set up colors in TopoSaic and get them into Bambu Studio or OrcaSlicer: which 3MF style to export, how to pick filament presets and slot numbers, how to stop Bambu's import dialog from piling up duplicate filaments, and what layer height to slice terrain at.">
   <link rel="icon" type="image/png" href="/assets/logo.png">
-  <link rel="stylesheet" href="/css/site.css?v=eff4970b">
+  <link rel="stylesheet" href="/css/site.css?v=4dd5aceb">
   <link rel="canonical" href="https://toposaic.com/guides/color-printing/">
   <meta property="og:title" content="TopoSaic color printing guide">
   <meta property="og:description" content="Set up the palette, pick filament slots, and import cleanly into Bambu Studio or OrcaSlicer.">
@@ -97,19 +97,19 @@
     </thead>
     <tbody>
       <tr>
-        <td><strong>Color project</strong><br><span class="muted-cell">the default</span></td>
-        <td>Standard color group, face-paint codes, and filament settings</td>
-        <td>Bambu Studio and OrcaSlicer</td>
+        <td data-label="Style"><strong>Color project</strong><br><span class="muted-cell">the default</span></td>
+        <td data-label="What the file carries">Standard color group, face-paint codes, and filament settings</td>
+        <td data-label="Use it for">Bambu Studio and OrcaSlicer</td>
       </tr>
       <tr>
-        <td><strong>Painted colors</strong></td>
-        <td>Face-paint codes only</td>
-        <td>A pre-painted model for OrcaSlicer, touching none of your presets</td>
+        <td data-label="Style"><strong>Painted colors</strong></td>
+        <td data-label="What the file carries">Face-paint codes only</td>
+        <td data-label="Use it for">A pre-painted model for OrcaSlicer, touching none of your presets</td>
       </tr>
       <tr>
-        <td><strong>Geometry only</strong></td>
-        <td>The standard 3MF color group only</td>
-        <td>Every other 3MF tool</td>
+        <td data-label="Style"><strong>Geometry only</strong></td>
+        <td data-label="What the file carries">The standard 3MF color group only</td>
+        <td data-label="Use it for">Every other 3MF tool</td>
       </tr>
     </tbody>
   </table>
@@ -158,16 +158,16 @@
     </thead>
     <tbody>
       <tr>
-        <td><strong>0.2 mm</strong><br><span class="muted-cell">most slicer defaults</span></td>
-        <td>Fast, and fine on steep ground. Shallow slopes and summits show stepping.</td>
+        <td data-label="Layer height"><strong>0.2 mm</strong><br><span class="muted-cell">most slicer defaults</span></td>
+        <td data-label="What you get">Fast, and fine on steep ground. Shallow slopes and summits show stepping.</td>
       </tr>
       <tr>
-        <td><strong>0.08–0.12 mm</strong></td>
-        <td>Smooth relief everywhere. Print time roughly doubles going from 0.2 mm to 0.1 mm.</td>
+        <td data-label="Layer height"><strong>0.08–0.12 mm</strong></td>
+        <td data-label="What you get">Smooth relief everywhere. Print time roughly doubles going from 0.2 mm to 0.1 mm.</td>
       </tr>
       <tr>
-        <td><strong>Variable, or adaptive</strong></td>
-        <td>Thin layers where the surface is near-flat and thick ones on steep faces. Most of the smoothness, a fraction of the time.</td>
+        <td data-label="Layer height"><strong>Variable, or adaptive</strong></td>
+        <td data-label="What you get">Thin layers where the surface is near-flat and thick ones on steep faces. Most of the smoothness, a fraction of the time.</td>
       </tr>
     </tbody>
   </table>
@@ -193,29 +193,29 @@
     </thead>
     <tbody>
       <tr>
-        <td>Dozens of filaments after an import, many the same color</td>
-        <td>Bambu's import dialog added one per model color, at its default setting</td>
-        <td>Delete the extras once; use Color match on every later import</td>
+        <td data-label="What you see">Dozens of filaments after an import, many the same color</td>
+        <td data-label="What happened">Bambu's import dialog added one per model color, at its default setting</td>
+        <td data-label="Fix">Delete the extras once; use Color match on every later import</td>
       </tr>
       <tr>
-        <td>Every added filament says "Generic TPU"</td>
-        <td>Bambu copies the last filament in your list when it adds one</td>
-        <td>Same as above; the copies are not coming from the file</td>
+        <td data-label="What you see">Every added filament says "Generic TPU"</td>
+        <td data-label="What happened">Bambu copies the last filament in your list when it adds one</td>
+        <td data-label="Fix">Same as above; the copies are not coming from the file</td>
       </tr>
       <tr>
-        <td>The model prints in the wrong colors, but the right pattern</td>
-        <td>The paint codes landed on filament numbers whose spools differ from the map's intent</td>
-        <td>Reorder the layers in the Colors tab to match your loaded spools, or remap in the slicer</td>
+        <td data-label="What you see">The model prints in the wrong colors, but the right pattern</td>
+        <td data-label="What happened">The paint codes landed on filament numbers whose spools differ from the map's intent</td>
+        <td data-label="Fix">Reorder the layers in the Colors tab to match your loaded spools, or remap in the slicer</td>
       </tr>
       <tr>
-        <td>Shallow slopes print as visible steps, like contour rings</td>
-        <td>The layer height is coarse against a nearly flat surface</td>
-        <td>Slice thinner, or turn on variable layer height</td>
+        <td data-label="What you see">Shallow slopes print as visible steps, like contour rings</td>
+        <td data-label="What happened">The layer height is coarse against a nearly flat surface</td>
+        <td data-label="Fix">Slice thinner, or turn on variable layer height</td>
       </tr>
       <tr>
-        <td>The model arrives with no colors at all</td>
-        <td>Geometry only, or Painted colors opened by a tool that reads neither channel</td>
-        <td>Export as Color project</td>
+        <td data-label="What you see">The model arrives with no colors at all</td>
+        <td data-label="What happened">Geometry only, or Painted colors opened by a tool that reads neither channel</td>
+        <td data-label="Fix">Export as Color project</td>
       </tr>
     </tbody>
   </table>
