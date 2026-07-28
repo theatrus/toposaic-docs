@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Saving setups and files — TopoSaic</title>
+  <meta name="description" content="How to save a TopoSaic model you want back: named setups, drift-detecting Save, five versions of history to roll back to, moving setups between machines, and writing a whole job's print files to one folder.">
+  <link rel="icon" type="image/png" href="/assets/logo.png">
+  <link rel="stylesheet" href="/css/site.css?v=6">
+  <link rel="canonical" href="https://toposaic.com/guides/setups-and-files/">
+  <meta property="og:title" content="Saving TopoSaic setups and files">
+  <meta property="og:description" content="Named setups, version history, and writing a whole job to one folder.">
+  <meta property="og:image" content="https://toposaic.com/assets/og.png?v=2">
+  <meta property="og:url" content="https://toposaic.com/guides/setups-and-files/">
+  <meta property="og:type" content="article">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://toposaic.com/assets/og.png?v=2">
+  <!-- Event snippet for Outbound click conversion; call gtag_report_conversion(url) from a Download/GitHub link's onclick -->
+  <script>
+  function gtag_report_conversion(url) {
+    var done = false;
+    var go = function () {
+      if (done) return;
+      done = true;
+      if (typeof(url) !== 'undefined') { window.location = url; }
+    };
+    gtag('event', 'conversion', {
+        'send_to': 'AW-18350477381/HrJRCK_V6NYcEMWgmK5E',
+        'value': 1.0,
+        'currency': 'USD',
+        'event_callback': go
+    });
+    setTimeout(go, 1000);
+    return false;
+  }
+  </script>
+</head>
+<body>
+
+<!-- site-header:start -->
+<header class="site-header">
+  <nav class="nav" aria-label="Primary navigation">
+    <a class="brand" href="/">
+      <img src="/assets/logo.png" alt="">
+      <span>TopoSaic<small>Terrain Puzzle</small></span>
+    </a>
+    <div class="nav-links">
+      <a href="/#features" class="keep">Features</a>
+      <a href="/#export">Export</a>
+      <a href="/guides/">Guides</a>
+      <a href="/releases/">Releases</a>
+      <a href="https://github.com/theatrus/toposaic" onclick="return gtag_report_conversion('https://github.com/theatrus/toposaic')">GitHub</a>
+      <a class="cta" href="https://github.com/theatrus/toposaic/releases" onclick="return gtag_report_conversion('https://github.com/theatrus/toposaic/releases')">Download</a>
+    </div>
+  </nav>
+</header>
+<!-- site-header:end -->
+
+<section class="section guide-head">
+  <p class="eyebrow">Guide</p>
+  <h1>Saving setups and files.</h1>
+  <p class="sub">A model you liked is worth keeping, and a finished job is a stack of files. This guide covers named setups and their history, moving them between machines, and writing a whole job's print files into one folder with the setup that made them.</p>
+</section>
+
+<section class="section">
+  <h2>1. Save a setup</h2>
+  <p>The top bar holds one saved-setups control, labeled with whichever setup you last recalled. Open it and every saved setup has a row.</p>
+  <ul class="tight">
+    <li><strong>Click a name</strong> to recall that setup — the model on screen becomes it.</li>
+    <li><strong>Rename</strong> turns the name into an inline text box. It is the only place names are edited.</li>
+    <li><strong>Duplicate</strong> copies the setup under a free name like "Alps (2)", ready to retitle.</li>
+    <li><strong>Delete</strong> asks first, in the row.</li>
+  </ul>
+  <p>Below the list, <strong>Save current setup</strong> stores whatever the controls hold under a name you type. Typing an existing name overwrites that setup.</p>
+  <p>A setup carries the whole model: the place, the relief, every layer and color, the puzzle layout, the tray, the wall mount, and any trails you imported. It also carries a stable puzzle seed and signed tile coordinates, so a super-tile run months later can still make edges that match the tiles you already printed.</p>
+</section>
+
+<section class="section">
+  <h2>2. Save changes back to it</h2>
+  <p>The recalled setup's row carries its own <strong>Save</strong>. It reads "Saved" while the model still matches what was stored, and offers to write the change back as soon as the model moves away from it.</p>
+  <div class="callout info">
+    <p><strong>It compares the model, not your keystrokes.</strong> Nudge a slider and put it back and the button returns to "Saved" — there is nothing to write. So the button offering itself means something really is different from what is stored.</p>
+  </div>
+</section>
+
+<section class="section">
+  <h2>3. Roll back to an earlier version</h2>
+  <p>Each row keeps a <strong>History</strong>: the last five specs that setup held before being saved over. Any of them can be rolled back to.</p>
+  <p>Rolling back does two things at once — it restores the stored setup <em>and</em> loads it, replacing the model on screen. Because that discards whatever you had in the controls, it asks first, with the same in-row confirm Delete uses.</p>
+  <div class="callout">
+    <p><strong>A rollback can itself be rolled back.</strong> The spec it replaced becomes a version of its own, so going back one version too far is not a dead end.</p>
+  </div>
+</section>
+
+<section class="section">
+  <h2>4. Move setups between machines</h2>
+  <p>Below the list, <strong>Export</strong> writes every saved setup to a <code>toposaic-setups.json</code> file and <strong>Import</strong> reads such a file back. That is the way to carry a library to another computer, keep a copy outside the app, or hand a setup to someone else.</p>
+  <p>A finished job also writes a single-setup file of its own — see below — and Import reads that same shape.</p>
+</section>
+
+<section class="section">
+  <h2>5. Collect the finished files</h2>
+  <p>A finished job lists its files on the Output tab. There are more of them than most prints need, so it helps to know which is which.</p>
+  <table>
+    <thead>
+      <tr><th>File</th><th>What it is</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>The color 3MF</strong></td>
+        <td>Every puzzle piece as its own object in one file. For most prints this is the only model file you need.</td>
+      </tr>
+      <tr>
+        <td><strong>Tray, tray segments, wall-mount hardware, flag templates</strong></td>
+        <td>Separate 3MFs beside it, one per part.</td>
+      </tr>
+      <tr>
+        <td><strong>STLs</strong></td>
+        <td>A plain STL for every one of those, plus one per puzzle piece, for anyone who would rather print from STL. Single color, but the raised road geometry is still there.</td>
+      </tr>
+      <tr>
+        <td><strong>The manifest</strong></td>
+        <td>What the job was made from, including the data-source credits that publicly shared prints and files must keep.</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>In the desktop app, <strong>Save all print files to a folder</strong> asks once for a folder and writes the 3MFs and the manifest into a new subfolder named after the place. The STL list has its own save, for the same reason. Single files still save one at a time from either list, and the browser build downloads them individually.</p>
+  <div class="callout info">
+    <p><strong>The setup travels with the files.</strong> Each saved folder also gets a <code>toposaic-setup.json</code> — the setup that made those exact files, in the shape Import reads. It is taken from the job's own manifest rather than from whatever the controls hold by the time you save, so it describes the model in the folder even if you have been fiddling since.</p>
+  </div>
+  <p>Saving the same job twice makes a second folder rather than writing over the first.</p>
+</section>
+
+<section class="section">
+  <h2>Where the app keeps things</h2>
+  <p>The desktop app keeps its database and generated jobs in the standard application-data directory, and every file it writes goes through a native save dialog — nothing lands in Downloads without asking.</p>
+  <p>The gear button beside the setups control opens the settings pane, which shows the map data cache: elevation tiles, land cover, OpenStreetMap, and place search, each with its size and entry count. Clearing is always manual — pick an age and clear older entries, or clear everything after a confirm click. Nothing expires on its own, and the next generation re-downloads what it needs.</p>
+  <p>To move any of it, set <code>TOPOSAIC_DATA_DIR</code> for the database and generated jobs, and <code>TOPOSAIC_CACHE_DIR</code> for the downloaded map cache.</p>
+</section>
+
+<section class="section">
+  <h2>Next</h2>
+  <p class="sub">Before you save a setup worth keeping: <a href="/guides/mapped-layers/">choosing what the map draws</a> and the <a href="/guides/color-printing/">color printing guide</a>.</p>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="attrib">
+      <h4>Data &amp; attribution</h4>
+      <p>TopoSaic draws on public map data. Publicly shared prints, images, and files must keep the data-source credits recorded in each manifest, or place them near the work.</p>
+      <p>Elevation: <a href="https://github.com/tilezen/joerd/blob/master/docs/attribution.md">Mapzen Terrain Tiles</a> &amp; <a href="https://mapterhorn.com/attribution/">Mapterhorn</a> · Land cover: <a href="https://esa-worldcover.org/en/data-access">ESA WorldCover</a> · Roads, railways, lifts, water, buildings, and place search: <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> via Overpass &amp; Nominatim.</p>
+    </div>
+    <div class="foot-links">
+      <h4>TopoSaic</h4>
+      <a href="/">Home</a>
+      <a href="/guides/">Guides</a>
+      <a href="https://github.com/theatrus/toposaic" onclick="return gtag_report_conversion('https://github.com/theatrus/toposaic')">Source on GitHub</a>
+      <a href="https://github.com/theatrus/toposaic/releases" onclick="return gtag_report_conversion('https://github.com/theatrus/toposaic/releases')">Downloads &amp; releases</a>
+      <a href="https://github.com/theatrus/toposaic/blob/main/LICENSE">Apache License 2.0</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Release notes — TopoSaic</title>
+  <meta name="description" content="What changed in each version of TopoSaic, from the current 0.6.0 release back to 0.4 — ferry routes, markers and labels, filament slots, saving a whole job to a folder, and wall mounting.">
+  <link rel="icon" type="image/png" href="/assets/logo.png">
+  <link rel="stylesheet" href="/css/site.css?v=6">
+  <link rel="canonical" href="https://toposaic.com/releases/">
+  <meta property="og:title" content="TopoSaic release notes">
+  <meta property="og:description" content="What changed in each version, from 0.6.0 back to 0.4.">
+  <meta property="og:image" content="https://toposaic.com/assets/og.png?v=2">
+  <meta property="og:url" content="https://toposaic.com/releases/">
+  <meta property="og:type" content="article">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://toposaic.com/assets/og.png?v=2">
+  <!-- Event snippet for Outbound click conversion; call gtag_report_conversion(url) from a Download/GitHub link's onclick -->
+  <script>
+  function gtag_report_conversion(url) {
+    var done = false;
+    var go = function () {
+      if (done) return;
+      done = true;
+      if (typeof(url) !== 'undefined') { window.location = url; }
+    };
+    gtag('event', 'conversion', {
+        'send_to': 'AW-18350477381/HrJRCK_V6NYcEMWgmK5E',
+        'value': 1.0,
+        'currency': 'USD',
+        'event_callback': go
+    });
+    setTimeout(go, 1000);
+    return false;
+  }
+  </script>
+</head>
+<body>
+
+<!-- site-header:start -->
+<header class="site-header">
+  <nav class="nav" aria-label="Primary navigation">
+    <a class="brand" href="/">
+      <img src="/assets/logo.png" alt="">
+      <span>TopoSaic<small>Terrain Puzzle</small></span>
+    </a>
+    <div class="nav-links">
+      <a href="/#features" class="keep">Features</a>
+      <a href="/#export">Export</a>
+      <a href="/guides/">Guides</a>
+      <a href="/releases/">Releases</a>
+      <a href="https://github.com/theatrus/toposaic" onclick="return gtag_report_conversion('https://github.com/theatrus/toposaic')">GitHub</a>
+      <a class="cta" href="https://github.com/theatrus/toposaic/releases" onclick="return gtag_report_conversion('https://github.com/theatrus/toposaic/releases')">Download</a>
+    </div>
+  </nav>
+</header>
+<!-- site-header:end -->
+
+<section class="section guide-head">
+  <p class="eyebrow">Release notes</p>
+  <h1>What changed, version by version.</h1>
+  <p class="sub">Every build for Windows, macOS, and Linux is on the <a href="https://github.com/theatrus/toposaic/releases" onclick="return gtag_report_conversion('https://github.com/theatrus/toposaic/releases')">GitHub releases page</a>. The desktop app checks for a newer version on launch and can install it in place.</p>
+</section>
+
+<section class="section" id="v0-6-0">
+  <p class="eyebrow">Current · 28 July 2026</p>
+  <h2>Version 0.6.0</h2>
+  <p class="sub">Filament slots you can actually load, two new things to put on a map, and a way to save a whole job in one step.</p>
+
+  <h3>Ferry crossings</h3>
+  <p>Mapped ferry routes draw as their own layer, in a deep teal of their own or folded in with the roads, alongside railways and aerial lifts. Like the others, a ferry costs a filament only where the map really has a crossing — an inland map never spends one. See <a href="/guides/mapped-layers/">choosing what the map draws</a>.</p>
+
+  <h3>Markers and labels</h3>
+  <p>Place building highlights, color dots, blank flags, and named flags by latitude and longitude. Named flags emboss their text in a bundled font, with the banner width, height, and text size under your control. Manual surface labels follow the terrain; raised plaques give text a flat backing. Each label has its own print size and map rotation.</p>
+
+  <h3>Only the filaments you print</h3>
+  <p>A 3MF now carries a color for each feature the model really contains and nothing more. Two layers set to one color share a slot, a layer the map has none of costs nothing, and every slot names a real filament preset instead of leaving the slicer to guess. The Colors tab shows which filament number each layer prints from and reorders them to match the spools already loaded. See the <a href="/guides/color-printing/">color printing guide</a>.</p>
+
+  <h3>Save a whole job at once</h3>
+  <p>Write a job's print files, or its STLs, to a folder in one step — with <code>toposaic-setup.json</code>, the setup that made them, alongside. Saved setups now offer to store changes when the model drifts from them, and keep their last five versions to roll back to. See <a href="/guides/setups-and-files/">saving setups and files</a>.</p>
+
+  <h3>Also in this release</h3>
+  <ul class="tight">
+    <li>Each setup saves a stable puzzle seed and signed tile coordinates, so a later super-tile run can still make edges that match tiles you already printed. Outer edge notches are now optional, and off by default.</li>
+    <li>Turn the map by any bearing, and pan it without moving the selected ground.</li>
+    <li>Buildings keep their proportions as the view closes in, rather than growing taller than the terrain.</li>
+    <li>The base label reads at the precision its map can support — or can be left off entirely.</li>
+  </ul>
+</section>
+
+<section class="section" id="v0-5-0">
+  <p class="eyebrow">Earlier</p>
+  <h2>Version 0.5.0</h2>
+  <ul class="tight">
+    <li>Mount a full terrain tile or display base with printable straight pins, angled pins, or a flush French-cleat receiver, with matching wall hardware, screw clearance, and alignment spacers.</li>
+    <li>Use linked map zoom to resize the selected ground area, or switch to map-only zoom while keeping the model span fixed.</li>
+    <li>Scan the rebuilt Surface tab by terrain, water, roads and bridges, railways and lifts, or imported trails.</li>
+    <li>Scale roads and railways from mapped OpenStreetMap widths where available, with class minimums and a maximum you set.</li>
+    <li>Open color 3MF output as separated pieces in Bambu Studio and OrcaSlicer.</li>
+  </ul>
+</section>
+
+<section class="section" id="v0-4-1">
+  <h2>Version 0.4.1</h2>
+  <ul class="tight">
+    <li>Repair isolated bad elevation samples before interpolation, so one stray reading cannot spike the terrain or break the mesh around it.</li>
+    <li>Open update notes in the system browser from the desktop app.</li>
+  </ul>
+</section>
+
+<section class="section" id="v0-4-0">
+  <h2>Version 0.4.0</h2>
+  <ul class="tight">
+    <li>Save named model setups and move them between machines as JSON. Inspect or clear each map cache from the settings pane.</li>
+    <li>Import GPX and KML routes as their own colored trail layer. Railways and aerial lifts get separate controls, colors, heights, and line history.</li>
+    <li>Choose project, painted, or geometry-only 3MF output to suit Bambu Studio, OrcaSlicer, and other tools.</li>
+    <li>High and Ultra detail generation use less time and memory, and generated previews replace the draft view when a job finishes.</li>
+    <li>Mesh, tray, building, overlay, and export code reject bad input without crashing, and models pass stricter watertightness checks before release.</li>
+  </ul>
+</section>
+
+<section class="section">
+  <h2>Older versions</h2>
+  <p class="sub">Notes for 0.3 and earlier are on the <a href="https://github.com/theatrus/toposaic/releases" onclick="return gtag_report_conversion('https://github.com/theatrus/toposaic/releases')">GitHub releases page</a>, which also carries every downloadable build.</p>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="attrib">
+      <h4>Data &amp; attribution</h4>
+      <p>TopoSaic draws on public map data. Publicly shared prints, images, and files must keep the data-source credits recorded in each manifest, or place them near the work.</p>
+      <p>Elevation: <a href="https://github.com/tilezen/joerd/blob/master/docs/attribution.md">Mapzen Terrain Tiles</a> &amp; <a href="https://mapterhorn.com/attribution/">Mapterhorn</a> · Land cover: <a href="https://esa-worldcover.org/en/data-access">ESA WorldCover</a> · Roads, railways, lifts, water, buildings, and place search: <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> via Overpass &amp; Nominatim.</p>
+    </div>
+    <div class="foot-links">
+      <h4>TopoSaic</h4>
+      <a href="/">Home</a>
+      <a href="/guides/">Guides</a>
+      <a href="https://github.com/theatrus/toposaic" onclick="return gtag_report_conversion('https://github.com/theatrus/toposaic')">Source on GitHub</a>
+      <a href="https://github.com/theatrus/toposaic/releases" onclick="return gtag_report_conversion('https://github.com/theatrus/toposaic/releases')">Downloads &amp; releases</a>
+      <a href="https://github.com/theatrus/toposaic/blob/main/LICENSE">Apache License 2.0</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
