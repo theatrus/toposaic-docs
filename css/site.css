@@ -342,3 +342,26 @@ th { background: rgba(38, 63, 52, .05); font-weight: 700; }
   background: none; border: none; color: #d6ddd2; font-size: 2.2rem; line-height: 1; cursor: pointer;
 }
 .lightbox .lb-close:hover { color: #fff; }
+
+/* ---------- Guide pages ---------- */
+.guide-head { padding-top: 3.4rem; }
+.guide-head h1 {
+  font-size: clamp(2rem, 4.4vw, 2.9rem);
+  margin: .3rem 0 .8rem;
+}
+.guide-head .sub { max-width: 46rem; }
+
+/* A section's own prose column — keeps lines readable beside full-width
+   tables and card grids. */
+.section > p,
+.section > ol,
+.section > ul { max-width: 46rem; }
+
+.section > ol,
+.section > ul { padding-left: 1.15rem; }
+.tight li { margin: .35rem 0; }
+.tight li::marker { color: var(--muted); }
+
+.section table .muted-cell { color: var(--muted); font-size: .86rem; }
+.callout p { margin: 0; }
+.callout p + p { margin-top: .7rem; }
