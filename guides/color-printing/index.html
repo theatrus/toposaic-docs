@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Color printing guide — TopoSaic</title>
+  <meta name="description" content="How to set up colors in TopoSaic and get them into Bambu Studio or OrcaSlicer: which 3MF style to export, how to pick filament presets and slot numbers, and how to stop Bambu's import dialog from piling up duplicate filaments.">
+  <link rel="icon" type="image/png" href="/assets/logo.png">
+  <link rel="stylesheet" href="/css/site.css?v=6">
+  <link rel="canonical" href="https://toposaic.com/guides/color-printing/">
+  <meta property="og:title" content="TopoSaic color printing guide">
+  <meta property="og:description" content="Set up the palette, pick filament slots, and import cleanly into Bambu Studio or OrcaSlicer.">
+  <meta property="og:image" content="https://toposaic.com/assets/og.png?v=2">
+  <meta property="og:url" content="https://toposaic.com/guides/color-printing/">
+  <meta property="og:type" content="article">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://toposaic.com/assets/og.png?v=2">
+  <!-- Event snippet for Outbound click conversion; call gtag_report_conversion(url) from a Download/GitHub link's onclick -->
+  <script>
+  function gtag_report_conversion(url) {
+    var done = false;
+    var go = function () {
+      if (done) return;
+      done = true;
+      if (typeof(url) !== 'undefined') { window.location = url; }
+    };
+    gtag('event', 'conversion', {
+        'send_to': 'AW-18350477381/HrJRCK_V6NYcEMWgmK5E',
+        'value': 1.0,
+        'currency': 'USD',
+        'event_callback': go
+    });
+    setTimeout(go, 1000);
+    return false;
+  }
+  </script>
+</head>
+<body>
+
+<!-- site-header:start -->
+<header class="site-header">
+  <nav class="nav" aria-label="Primary navigation">
+    <a class="brand" href="/">
+      <img src="/assets/logo.png" alt="">
+      <span>TopoSaic<small>Terrain Puzzle</small></span>
+    </a>
+    <div class="nav-links">
+      <a href="/#features" class="keep">Features</a>
+      <a href="/#export">Export</a>
+      <a href="/guides/color-printing/">Color guide</a>
+      <a href="https://github.com/theatrus/toposaic" onclick="return gtag_report_conversion('https://github.com/theatrus/toposaic')">GitHub</a>
+      <a class="cta" href="https://github.com/theatrus/toposaic/releases" onclick="return gtag_report_conversion('https://github.com/theatrus/toposaic/releases')">Download</a>
+    </div>
+  </nav>
+</header>
+<!-- site-header:end -->
+
+<section class="section guide-head">
+  <p class="eyebrow">Guide</p>
+  <h1>Printing your map in color.</h1>
+  <p class="sub">A TopoSaic model can print in anything from one color to eleven. This guide covers setting the palette, choosing which filament each layer prints from, and getting all of it into Bambu Studio or OrcaSlicer without a fight.</p>
+</section>
+
+<section class="section">
+  <h2>1. Set the palette</h2>
+  <p>The <strong>Colors</strong> tab holds every printed color in one place, grouped by what it draws: terrain and land cover, roads and transport, structures and markers, and the display base.</p>
+  <p>Two things there are worth knowing before you print.</p>
+  <div class="callout info">
+    <p><strong>Two layers, one color, one spool.</strong> Set any two layers to the same hex value and they share a single filament in the export. Painting roads and railways the same color costs one spool, not two. This is the easy way to keep a busy map down to the number of filaments your printer can actually load.</p>
+  </div>
+  <p>Colors stay editable while a layer is switched off, so a setup can be prepared in advance. A color only reaches the model when its layer is on <em>and</em> the map really contains that feature — a map with no cable cars never asks for the lift color.</p>
+</section>
+
+<section class="section">
+  <h2>2. Choose the filament slots</h2>
+  <p>Below the preset picker, the Colors tab lists every layer that will print, in order, with the filament number it prints from. Use the arrows to reorder them so the numbers line up with the spools already loaded in your printer.</p>
+  <ul class="tight">
+    <li>Layers sharing a color share a number.</li>
+    <li>A layer the map turns out to lack gives its number up, and the later layers move down.</li>
+    <li>The order changes numbers only — never which layers print, or which share.</li>
+  </ul>
+  <p>The <strong>filament preset</strong> above the list names the material each slot asks the slicer for: Generic PLA, Bambu PLA Basic, PolyLite PLA, or PolyTerra PLA. Naming one is what stops a slicer choosing a material of its own. Slicer preset names also carry a printer suffix, like <code>PolyTerra PLA @BBL A1</code>, which a file cannot know in advance — so a slicer that cannot match the exact preset still reads the right vendor and the right material.</p>
+</section>
+
+<section class="section">
+  <h2>3. Pick an export style</h2>
+  <p>The <strong>Output</strong> tab offers three 3MF styles. Each states the model's colors one way, matched to how the slicers read them.</p>
+  <table>
+    <thead>
+      <tr><th>Style</th><th>What the file carries</th><th>Use it for</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Color project</strong><br><span class="muted-cell">the default</span></td>
+        <td>Standard color group, face-paint codes, and filament settings</td>
+        <td>Bambu Studio and OrcaSlicer</td>
+      </tr>
+      <tr>
+        <td><strong>Painted colors</strong></td>
+        <td>Face-paint codes only</td>
+        <td>A pre-painted model for OrcaSlicer, touching none of your presets</td>
+      </tr>
+      <tr>
+        <td><strong>Geometry only</strong></td>
+        <td>The standard 3MF color group only</td>
+        <td>Every other 3MF tool</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>If you are unsure, leave it on Color project. It carries its colors both ways the two slicers read them.</p>
+</section>
+
+<section class="section">
+  <h2>4. Import into Bambu Studio</h2>
+  <p>Bambu Studio does not apply another program's embedded filament settings. Colors arrive through its <strong>Standard 3mf Import color</strong> dialog instead, which opens for any color 3MF that Bambu did not write itself.</p>
+  <ol class="tight">
+    <li>Open or import the Color project 3MF.</li>
+    <li>In the dialog, click <strong>Color match</strong>.</li>
+    <li>Check the mapping rows — each shows a model color and the filament number it will print from.</li>
+    <li>Click OK.</li>
+  </ol>
+  <div class="callout">
+    <p><strong>Check the mapping before you click OK, and avoid Append.</strong> When the dialog opens it has already staged one <em>new</em> filament per model color, so accepting the defaults can add the whole palette to your filament list without you ever pressing Append. Color match re-points those rows at spools you already have.</p>
+    <p>It matters because of how Bambu builds an added filament: each one is a copy of the <em>last</em> filament in your list, whatever that happens to be. One TPU spool at the end turns every added color into "Generic TPU". And the filament list is stored by the app, not the project, so the copies come back in every later import until you delete them.</p>
+  </div>
+  <p>If your filament list already holds stacks of same-colored "Generic TPU" entries, earlier imports added them. Delete them once, and use Color match from then on.</p>
+</section>
+
+<section class="section">
+  <h2>5. Import into OrcaSlicer</h2>
+  <p>OrcaSlicer works the other way around: it reads the embedded settings and has no import dialog at all. That gives two clean workflows — pick by whether you want the file to set up your filaments, or to fit into a setup you already have.</p>
+  <div class="features">
+    <div class="card">
+      <div class="icon">🎨</div>
+      <h3>Let the file set the colors</h3>
+      <p>Open a <strong>Color project</strong> 3MF as a project. The filament list becomes exactly the palette from the Colors tab, each slot on the preset you named there.</p>
+    </div>
+    <div class="card">
+      <div class="icon">🧷</div>
+      <h3>Keep your own setup</h3>
+      <p>Import a <strong>Painted colors</strong> 3MF into a project you have already set up. Nothing in the file touches your presets: each layer prints from the filament number the Colors tab showed, so load the spools in that order first.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Other slicers and tools</h2>
+  <p><strong>Geometry only</strong> writes a plain standards-based 3MF: the core-spec color group and nothing vendor-specific. That is the one channel non-slicer 3MF tools read, so use it for viewers, mesh editors, and anything outside the Bambu and Orca family.</p>
+</section>
+
+<section class="section">
+  <h2>Troubleshooting</h2>
+  <table>
+    <thead>
+      <tr><th>What you see</th><th>What happened</th><th>Fix</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Dozens of filaments after an import, many the same color</td>
+        <td>Bambu's import dialog added one per model color, at its default setting</td>
+        <td>Delete the extras once; use Color match on every later import</td>
+      </tr>
+      <tr>
+        <td>Every added filament says "Generic TPU"</td>
+        <td>Bambu copies the last filament in your list when it adds one</td>
+        <td>Same as above; the copies are not coming from the file</td>
+      </tr>
+      <tr>
+        <td>The model prints in the wrong colors, but the right pattern</td>
+        <td>The paint codes landed on filament numbers whose spools differ from the map's intent</td>
+        <td>Reorder the layers in the Colors tab to match your loaded spools, or remap in the slicer</td>
+      </tr>
+      <tr>
+        <td>The model arrives with no colors at all</td>
+        <td>Geometry only, or Painted colors opened by a tool that reads neither channel</td>
+        <td>Export as Color project</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="sub">The full technical findings behind this guide — what each slicer reads, and the source they were read from — are in <a href="https://github.com/theatrus/toposaic/blob/main/docs/slicer-3mf-import.md">docs/slicer-3mf-import.md</a>.</p>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="attrib">
+      <h4>Data &amp; attribution</h4>
+      <p>TopoSaic draws on public map data. Publicly shared prints, images, and files must keep the data-source credits recorded in each manifest, or place them near the work.</p>
+      <p>Elevation: <a href="https://github.com/tilezen/joerd/blob/master/docs/attribution.md">Mapzen Terrain Tiles</a> &amp; <a href="https://mapterhorn.com/attribution/">Mapterhorn</a> · Land cover: <a href="https://esa-worldcover.org/en/data-access">ESA WorldCover</a> · Roads, railways, lifts, water, buildings, and place search: <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> via Overpass &amp; Nominatim.</p>
+    </div>
+    <div class="foot-links">
+      <h4>TopoSaic</h4>
+      <a href="/">Home</a>
+      <a href="https://github.com/theatrus/toposaic" onclick="return gtag_report_conversion('https://github.com/theatrus/toposaic')">Source on GitHub</a>
+      <a href="https://github.com/theatrus/toposaic/releases" onclick="return gtag_report_conversion('https://github.com/theatrus/toposaic/releases')">Downloads &amp; releases</a>
+      <a href="https://github.com/theatrus/toposaic/blob/main/LICENSE">Apache License 2.0</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
