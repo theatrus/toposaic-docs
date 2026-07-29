@@ -1,12 +1,12 @@
 ---
 title: Choosing what the map draws — TopoSaic
-description: How TopoSaic's mapped layers work: roads, railways, aerial lifts, ferries, imported GPX and KML trails, water, buildings, and markers — what each one covers, what it costs in filament, and how to fold two layers into one color.
+description: How TopoSaic's mapped layers work: roads, railways, aerial lifts, ferries, airport surfaces, imported GPX and KML trails, water, buildings, and markers — what each one covers, what it costs in filament, and how to fold two layers into one color.
 ogTitle: Choosing what the TopoSaic map draws
 ogDescription: Roads, railways, lifts, ferries, trails, water, buildings, and markers — and what each costs in filament.
 ogType: article
 url: /guides/mapped-layers/
 sitemap: yes
-updated: 2026-07-28
+updated: 2026-07-29
 ---
 
 <section class="section guide-head">
@@ -44,6 +44,11 @@ updated: 2026-07-28
         <td>Deep teal</td>
       </tr>
       <tr>
+        <td><strong>Airport surfaces</strong></td>
+        <td>Runways, airstrips, stopways, taxiways, taxilanes, aprons, and helipads. Off to start.</td>
+        <td>Slate grey</td>
+      </tr>
+      <tr>
         <td><strong>Trails</strong></td>
         <td>Your own GPX and KML routes, one line per track.</td>
         <td>High-vis magenta</td>
@@ -67,11 +72,27 @@ updated: 2026-07-28
 </section>
 
 <section class="section">
+  <h2>Airport surfaces</h2>
+  <p>Airports are the one layer that starts switched <em>off</em>. An airport is something you go looking for, and a map that happens to clip the edge of one should not sprout a runway.</p>
+  <p>Four groups switch on and off on their own — runways and airstrips, taxiways and taxilanes, aprons, helipads — and all four share one color and one filament slot. They are one printed surface to the eye and one filament in the slicer, so splitting them would spend spools on a distinction nobody asked for.</p>
+  <div class="callout info">
+    <p><strong>Pavement is graded, not draped.</strong> A real runway is built to a steady gradient and is level across its width. Following the elevation data per point gives neither — the strip corrugates along its length and tilts side to side wherever two coarse samples disagree. So the ground is read once along the centre line, smoothed enough to lose the noise while keeping the real slope, and the whole width of the strip sits at its own station's height.</p>
+  </div>
+  <p>OpenStreetMap often carries the same pavement twice: an outline around it <em>and</em> a centre line down it. Drawing both would lay the surface down twice, once at its true shape and once as a ribbon of guessed width, so where an outline covers a line the line is dropped. Outlines keep their holes, so an apron drawn around a terminal stays apron everywhere except where the terminal stands — and the terminal itself still prints in the building color.</p>
+  <p>Two settings are worth knowing:</p>
+  <ul class="tight">
+    <li><strong>Maximum airport width</strong> — a 60&nbsp;m runway on a close view is a correct reading of the data and still wider than anyone wants across the model.</li>
+    <li><strong>Small feature cutoff</strong> — the ground span past which helipads are dropped, before they are requested rather than after. A whole airport graph at an eighty-kilometre view is a mass of unprintable threads.</li>
+  </ul>
+  <p>The airport boundary itself is never drawn. <code>aeroway=aerodrome</code> covers the grass, the car parks, and the fields, so painting it would put pavement over most of a map that merely contains an airport.</p>
+</section>
+
+<section class="section">
   <h2>Folding two layers into one color</h2>
   <p>When your printer has fewer spools than the map has features, a layer can borrow another layer's color instead of switching off. Each toggle carries its own style picker.</p>
   <ul class="tight">
     <li><strong>Own color</strong> — the default everywhere. The color swatch and width slider appear under it.</li>
-    <li><strong>Draw with roads</strong> — available to railways, lifts, and ferries. The layer prints in the route color at the route width, so it still shows, and costs no extra filament.</li>
+    <li><strong>Draw with roads</strong> — available to railways, lifts, ferries, and airport surfaces. The layer prints in the route color at the route width, so it still shows, and costs no extra filament.</li>
     <li><strong>Draw with railways</strong> — lifts only. Lifts and trains share one color. With the railway layer switched off, this falls back to the road color rather than making an enabled layer vanish.</li>
   </ul>
   <p>The 3D legend names whatever the model actually shows. A layer drawn in its own color gets its own entry; a layer that borrowed one is named by the entry it borrowed — so lifts following separately colored railways appear under Rail, and anything drawn with roads appears under Route.</p>
