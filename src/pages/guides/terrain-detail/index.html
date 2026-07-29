@@ -1,18 +1,18 @@
 ---
-title: Elevation and detail — TopoSaic
-description: Where TopoSaic's elevation comes from and how much detail to ask for: Mapzen and Mapterhorn tiles, the finest-detail mode for small areas, what Draft through Ultra actually change, and why the surface is curved between readings rather than stepped.
-ogTitle: TopoSaic elevation and detail
-ogDescription: Elevation sources, detail levels, and what each one costs in print time.
+title: Elevation, height, and detail — TopoSaic
+description: Where TopoSaic's elevation comes from, how tall the terrain prints, and how much detail to ask for: Mapzen and Mapterhorn tiles, overall height against a fixed multiplier, what zero is measured from, and what Draft through Ultra actually change.
+ogTitle: TopoSaic elevation, height, and detail
+ogDescription: Elevation sources, vertical scale, detail levels, and what each one costs in print time.
 ogType: article
 url: /guides/terrain-detail/
 sitemap: yes
-updated: 2026-07-28
+updated: 2026-07-29
 ---
 
 <section class="section guide-head">
   <p class="eyebrow">Guide</p>
-  <h1>Elevation, and how much detail to ask for.</h1>
-  <p class="sub">Two settings decide how sharp a model is: where the elevation comes from, and how finely the mesh samples it. Turning both up is not always better — past the point where the source data runs out, you are only adding triangles.</p>
+  <h1>Elevation, height, and how much detail to ask for.</h1>
+  <p class="sub">Three things decide what the terrain looks like: where the elevation comes from, how tall it prints, and how finely the mesh samples it. Turning the last one up is not always better — past the point where the source data runs out, you are only adding triangles.</p>
 </section>
 
 <section class="section">
@@ -45,6 +45,39 @@ updated: 2026-07-28
 </section>
 
 <section class="section">
+  <h2 id="vertical-scale">How tall it prints</h2>
+  <p>Terrain is nearly always printed taller than life. Eighteen kilometres of ground across a 180 mm model is a plan scale of 1:100,000, and at that scale Mount Rainier's real 3.5 km of relief stands 35 mm tall — close enough to a printable height that the vertical scale becomes a decision of its own rather than a consequence. The Model tab offers two ways to make it.</p>
+  <table>
+    <thead>
+      <tr><th>Setting</th><th>What it holds fixed</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Overall height</strong><br><span class="muted-cell">the default</span></td>
+        <td>The finished height. Whatever the ground does, the relief is fitted into the millimetres you asked for — a prairie and an alp both print 28 mm tall.</td>
+      </tr>
+      <tr>
+        <td><strong>Multiplier</strong></td>
+        <td>The exaggeration. The height then follows the terrain: a flat delta prints low, a mountain prints tall, and two models made at the same multiplier are directly comparable.</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>Which one you want depends on whether the model is a single object or one of a set. For a puzzle on its own, overall height is the setting that keeps it inside a printer. For a shelf of places meant to be read against each other, a fixed multiplier is the only thing that makes them honest — under overall height a hill and a mountain arrive the same size.</p>
+  <p>Switching between the two translates the value, so the model does not move: the multiplier you land on is the one the fitted height was already using. Each mode shows what the other would give — a height in millimetres, or an exaggeration.</p>
+  <div class="callout info">
+    <p><strong>Exaggeration under 1× is normal, not a mistake.</strong> A large mountain across a wide span is usually <em>compressed</em>: Mount Rainier over 18 km, fitted into 28 mm of relief, is about 0.8×. Vertical exaggeration is only large on gentle ground — a river valley or a coastal city can want 20× before its relief reads at all.</p>
+  </div>
+  <h3>Where zero sits</h3>
+  <p>The other half of the vertical scale is what the height is measured from.</p>
+  <ul class="tight">
+    <li><strong>This area's lowest ground</strong> — the default. The relief gets the whole height, so nothing is spent lifting the model off its base.</li>
+    <li><strong>Sea level</strong> — shared by every model everywhere. A valley floor at 300 m prints 300 m up, which is what makes two separate areas stack against each other.</li>
+    <li><strong>A set elevation</strong> — name your own.</li>
+  </ul>
+  <p>No datum ever cuts terrain off. Choose one above the ground and it drops to the real minimum rather than shearing off everything underneath.</p>
+</section>
+
+<section class="section">
   <h2>How much mesh to spend</h2>
   <p>Mesh detail is one budget spread across the whole assembled model, not per piece. Adding puzzle pieces does not multiply the density, and solid terrain matches puzzle output at the same setting.</p>
   <table>
@@ -70,7 +103,7 @@ updated: 2026-07-28
 
 <section class="section">
   <h2>What gets cached</h2>
-  <p>Elevation tiles, land cover, and OpenStreetMap responses are cached under your machine's user cache directory. Nothing expires on its own — clearing is a deliberate act in the settings pane, by age or all at once.</p>
+  <p>Elevation tiles, land cover, satellite imagery, OpenStreetMap responses, tide-station datums, and place searches are each cached under your machine's user cache directory, listed separately in the settings pane. Nothing expires on its own — clearing is a deliberate act, by age or all at once.</p>
   <p>OpenStreetMap entries keep the <em>raw</em> response rather than a processed one. That is why changing road width, density, color, or which layers are visible re-renders from what you already have instead of asking the network again.</p>
   <p>For a request that is not cached, the service tries a second public Overpass instance when the first refuses or cannot answer, then remembers which one worked for next time. If both fail, generation carries on without that layer — you still get terrain and land-cover water rather than an error. A response that arrives with a timeout remark buried in it is rejected rather than cached, so a partial building set never becomes the version you keep.</p>
 </section>

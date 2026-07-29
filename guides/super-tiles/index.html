@@ -94,6 +94,7 @@
   </div>
   <p>If a later tile turns out to contain ground below that datum — a valley floor deeper than anything the first tile held — TopoSaic says so. It tells you the shared datum has to move down, and that the tiles you already generated have to be made again against the new one. It will not quietly rescale the new tile to fit, because that is the one outcome that cannot be printed into a matching set.</p>
   <p>The practical order, then: start at the lowest ground you intend to print, not the summit.</p>
+  <p>What the lock captures is whatever the Model tab's <a href="/guides/terrain-detail/#vertical-scale">vertical scale</a> resolves to for the first tile. Those settings are worth a look before you start a grid, because one of them changes the shape of this step: under a fixed <strong>multiplier</strong> the scale is the same everywhere by definition, so it cannot depend on which tile you happened to begin with. The datum check above is unchanged either way — nothing lets a tile print below the shared zero.</p>
 </section>
 
 <section class="section">
