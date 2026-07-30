@@ -5,12 +5,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Color printing guide — TopoSaic</title>
-  <meta name="description" content="How to set up colors in TopoSaic and get them into Bambu Studio or OrcaSlicer: which 3MF style to export, how to pick filament presets and slot numbers, how to stop Bambu's import dialog from piling up duplicate filaments, and what layer height to slice terrain at.">
+  <meta name="description" content="How to set up colors in TopoSaic and get them into Bambu Studio or OrcaSlicer: which 3MF style to export, letting the ground pick its own colors from satellite imagery, how to pick filament presets and slot numbers, how to stop Bambu's import dialog from piling up duplicate filaments, and what layer height to slice terrain at.">
   <link rel="icon" type="image/png" href="/assets/logo.png">
   <link rel="stylesheet" href="/css/site.css?v=4dd5aceb">
   <link rel="canonical" href="https://toposaic.com/guides/color-printing/">
   <meta property="og:title" content="TopoSaic color printing guide">
-  <meta property="og:description" content="Set up the palette, pick filament slots, and import cleanly into Bambu Studio or OrcaSlicer.">
+  <meta property="og:description" content="Set the palette or read it off the imagery, pick filament slots, and import cleanly into Bambu Studio or OrcaSlicer.">
   <meta property="og:image" content="https://toposaic.com/assets/og.png?v=2">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -75,6 +75,40 @@
     <p><strong>Two layers, one color, one spool.</strong> Set any two layers to the same hex value and they share a single filament in the export. Painting roads and railways the same color costs one spool, not two. This is the easy way to keep a busy map down to the number of filaments your printer can actually load.</p>
   </div>
   <p>Colors stay editable while a layer is switched off, so a setup can be prepared in advance. A color only reaches the model when its layer is on <em>and</em> the map really contains that feature — a map with no cable cars never asks for the lift color.</p>
+
+  <h3 id="ground-colors">Or let the ground pick its own colors</h3>
+  <p>The four land-cover colors are one flat color each: every tree the same green, every bare slope the same grey. That is the right answer for a map and a poor one for a landscape, because a red rock desert and a white rock desert arrive identical.</p>
+  <p><strong>Ground colors</strong>, in the Surface tab's Terrain section, offers two ways to read the colors off the place itself. Both sample the ESA WorldCover Sentinel-2 composites — the same 10 m lattice the land cover comes from — and cluster what they find into a small printable palette.</p>
+  <table>
+    <thead>
+      <tr><th>Setting</th><th>What you get</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-label="Setting"><strong>Mapped classes</strong><br><span class="muted-cell">the default</span></td>
+        <td data-label="What you get">One fixed color per class, as before. Nothing is sampled.</td>
+      </tr>
+      <tr>
+        <td data-label="Setting"><strong>Satellite shades inside classes</strong></td>
+        <td data-label="What you get">Clusters within each mapped class, so forest keeps its own greens and rock its own greys. A bay grey and an asphalt grey stay separate materials.</td>
+      </tr>
+      <tr>
+        <td data-label="Setting"><strong>Satellite palette</strong></td>
+        <td data-label="What you get">Clusters the imagery alone, with no regard for the classes. The most faithful to the photograph, and the least legible as a map.</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>Three settings shape the result: how many colors discovery may keep, the share below which a color merges into its neighbour instead of taking a filament, and how strongly shadows are evened out first. That last one matters more than it sounds — at zero, a shadowed hillside can become a color of its own and spend a spool on the time of day the satellite passed.</p>
+  <div class="callout info">
+    <p><strong>Spare colors follow variety, not area.</strong> Once every class has one, the colors left over go where the ground is most varied rather than where it covers most. A two-tone desert keeps its red rock and its white rock even when a uniform forest covers more of the map — which is the whole reason to sample the imagery instead of painting classes.</p>
+  </div>
+  <h4>What it costs in filament</h4>
+  <p>Each discovered color takes a slot like any other, and the same packing rules apply: a color no piece actually paints costs nothing, and one that lands on a class color you already print shares that slot rather than asking for a second spool of the same filament.</p>
+  <p>Only the ground hands over. Roads, buildings, railways, ferries, and airport pavement are drawn from the map on top of the terrain and keep their own colors — a road that took the color of the dirt beside it would stop reading as a road.</p>
+  <div class="callout">
+    <p><strong>Where the composite is masked, the mapped color stays.</strong> The Sentinel-2 composites mask cloud and, often, permanent snow — so a summit can come back with no usable imagery and print its mapped snow color. On an 8&nbsp;km Mount Rainier model about a fifth of the surface does exactly that. It is a fallback, not a fault: the alternative is a hole.</p>
+  </div>
+  <p>A finished job pins the palette it found into its setup, so running that setup again reproduces the same colors instead of discovering a fresh set — and across a <a href="/guides/super-tiles/">super-tile</a>, the first tile's palette is handed to every tile after it, so no seam changes filament for no reason on the ground.</p>
 </section>
 
 <section class="section">
