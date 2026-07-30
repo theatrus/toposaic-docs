@@ -5,12 +5,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Choosing what the map draws — TopoSaic</title>
-  <meta name="description" content="How TopoSaic's mapped layers work: roads, railways, aerial lifts, ferries, airport surfaces, imported GPX and KML trails, water, buildings, and markers — what each one covers, what it costs in filament, and how to fold two layers into one color.">
+  <meta name="description" content="How TopoSaic's mapped layers work: roads, railways, aerial lifts, ferries, airport surfaces, imported GPX and KML trails, water, a flat sea at the tide level you choose, buildings, and markers — what each one covers, what it costs in filament, and how to fold two layers into one color.">
   <link rel="icon" type="image/png" href="/assets/logo.png">
   <link rel="stylesheet" href="/css/site.css?v=4dd5aceb">
   <link rel="canonical" href="https://toposaic.com/guides/mapped-layers/">
   <meta property="og:title" content="Choosing what the TopoSaic map draws">
-  <meta property="og:description" content="Roads, railways, lifts, ferries, trails, water, buildings, and markers — and what each costs in filament.">
+  <meta property="og:description" content="Roads, railways, lifts, ferries, trails, water and the sea, buildings, and markers — and what each costs in filament.">
   <meta property="og:image" content="https://toposaic.com/assets/og.png?v=2">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -181,6 +181,39 @@
     <li>Mapped water <em>areas</em> — lakes, reservoirs, wide rivers — ignore the cutoff entirely.</li>
   </ul>
   <p>OpenStreetMap water can be switched off on its own without hiding the satellite-derived WorldCover water underneath it.</p>
+</section>
+
+<section class="section">
+  <h2>The sea, and where you put its surface</h2>
+  <p>A real sea is level. The elevation source does not know that: it hands back whatever it holds under the water, which with Mapzen can be coarse seabed data. Printed, that becomes blue bathymetric relief — a bay with hills in it.</p>
+  <p><strong>Sea surface</strong>, in the Water section, is the fix.</p>
+  <table>
+    <thead>
+      <tr><th>Setting</th><th>What the sea does</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-label="Setting"><strong>Bathymetric relief</strong><br><span class="muted-cell">the default</span></td>
+        <td data-label="What the sea does">The source depths print as they arrive, draped like any other terrain. Existing models are unaffected.</td>
+      </tr>
+      <tr>
+        <td data-label="Setting"><strong>Flat surface</strong></td>
+        <td data-label="What the sea does">The water joined to the open sea at the map's edge is levelled to one plane. Lakes, reservoirs, and inland hollows keep their own heights.</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="callout info">
+    <p><strong>The coastline is consulted before anything moves.</strong> Finding the sea by flooding inward from the map's edge is nearly right, and wrong in one memorable way: satellite water cannot tell the ocean from a below-sea-level inland basin that happens to reach the edge. The Salton Sea is 70 m below zero and not the ocean. So the mapped <code>natural=coastline</code> ways are assembled into the real sea outline first, and only border water inside it may start the flood. Where a map has no mapped coastline, the fill trusts the satellite water as it would otherwise.</p>
+  </div>
+  <h3>Which water level</h3>
+  <p>A coast has more than one defensible height, so the level is a choice of its own.</p>
+  <ul class="tight">
+    <li><strong>Mean sea level</strong> — the elevation source's own zero.</li>
+    <li><strong>Low tide</strong> and <strong>high tide</strong> — the nearest NOAA tide station's published MLLW and MHHW, read as offsets from local mean sea level. That covers United States coasts; elsewhere they fall back to mean sea level and say so in the job's data sources, and a station far from the map carries its own caveat.</li>
+    <li><strong>A custom offset</strong> in metres. Below zero dries out the foreshore between the two planes — the intertidal ground a low tide exposes. Above zero floods sea-connected land under it.</li>
+  </ul>
+  <p>The level that was actually used, and the vertical reference it was measured against, are both recorded with the finished job.</p>
+  <p>Two things to know. Flattening needs color mode on, since it is the land-cover data that says which samples are water in the first place. And a super-tile shares one plane across every tile by construction — the level is worked out without reading any one tile's heights, so it cannot drift from tile to tile.</p>
 </section>
 
 <section class="section">
