@@ -5,12 +5,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Release notes — TopoSaic</title>
-  <meta name="description" content="What changed in each version of TopoSaic, from the current 0.6.0 release back to 0.4 — ferry routes, markers and labels, filament slots, saving a whole job to a folder, and wall mounting.">
+  <meta name="description" content="What changed in each version of TopoSaic, from the current 0.7.0 release back to 0.4 — satellite ground colors, flat seas, the vertical scale, source bundles, ferry routes, markers and labels, filament slots, and wall mounting.">
   <link rel="icon" type="image/png" href="/assets/logo.png">
   <link rel="stylesheet" href="/css/site.css?v=4dd5aceb">
   <link rel="canonical" href="https://toposaic.com/changelog/">
   <meta property="og:title" content="TopoSaic release notes">
-  <meta property="og:description" content="What changed in each version, from 0.6.0 back to 0.4.">
+  <meta property="og:description" content="What changed in each version, from 0.7.0 back to 0.4.">
   <meta property="og:image" content="https://toposaic.com/assets/og.png?v=2">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -67,8 +67,33 @@
   <p class="sub">Every build for Windows, macOS, and Linux is on the <a href="https://github.com/theatrus/toposaic/releases" onclick="return gtag_report_conversion('https://github.com/theatrus/toposaic/releases')">GitHub releases page</a>. The desktop app checks for a newer version on launch and can install it in place.</p>
 </section>
 
+<section class="section" id="v0-7-0">
+  <p class="eyebrow">Current · 30 July 2026</p>
+  <h2>Version 0.7.0</h2>
+  <p class="sub">Colors read off the place itself, a sea that lies flat, a vertical scale you choose, and a way to keep the map data a print came from.</p>
+
+  <h3>Ground colors from the imagery</h3>
+  <p>The four land-cover colors are one flat color each, which is right for a map and thin for a landscape. Two new modes cluster ESA WorldCover Sentinel-2 imagery of the area itself into a small printable palette — shades within each mapped class, or the imagery alone. Each discovered color takes a filament slot, and one that lands on a class color shares it. See the <a href="/guides/color-printing/#ground-colors">color printing guide</a>.</p>
+
+  <h3>A sea that lies flat</h3>
+  <p>A real sea is level; the elevation source hands back whatever seabed it holds, which prints as blue hills in a bay. A coastal map can now flatten the water joined to the open sea, at mean sea level, the nearest NOAA station's low or high tide, or an offset you set. The mapped coastline is consulted first, so a below-sea-level lake touching the map edge is not mistaken for the ocean. See <a href="/guides/mapped-layers/">choosing what the map draws</a>.</p>
+
+  <h3>The vertical scale is a choice</h3>
+  <p>Terrain height was always fitted to the millimetres you asked for, which makes every area print the same height whatever the ground does. You can now hold a fixed multiplier instead and let the height follow the terrain, so separate models compare — and measure it from the area's lowest ground, sea level, or an elevation you name. Switching between the two translates the value, so the model does not move. See <a href="/guides/terrain-detail/#vertical-scale">elevation, height, and detail</a>.</p>
+
+  <h3>Keep the data a print came from</h3>
+  <p>A finished job can pack every elevation tile, land-cover tile, and map response it read into one file. Import it on another machine and the same model builds with no network at all — or keep it as an archive against the day a provider retires a tile.</p>
+
+  <h3>Also in this release</h3>
+  <ul class="tight">
+    <li>Airport pavement — runways, airstrips, stopways, taxiways, taxilanes, aprons, and helipads — graded along the centre line rather than draped over every bump.</li>
+    <li>Water is kept off printed walls: the slope gate judges the angle the model prints at rather than the real one, and ground under mapped pavement is never water.</li>
+    <li>The update notice's links worked in the browser and did nothing in the desktop app. Fixed, along with the attribution links, which had the same fault. The notice also shows what the release contains now.</li>
+  </ul>
+</section>
+
 <section class="section" id="v0-6-1">
-  <p class="eyebrow">Current · 28 July 2026</p>
+  <p class="eyebrow">28 July 2026</p>
   <h2>Version 0.6.1</h2>
   <p class="sub">One fix: printed pieces no longer wear a grey outline around every edge.</p>
 
