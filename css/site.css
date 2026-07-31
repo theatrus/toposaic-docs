@@ -130,8 +130,8 @@ th { background: rgba(38, 63, 52, .05); font-weight: 700; }
   margin: 0 auto;
   padding: 4.6rem 1.25rem 3rem;
   display: grid;
-  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
-  gap: 3rem;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: 2.4rem;
   align-items: center;
 }
 .hero-logo { width: 66px; height: 66px; border-radius: 14px; margin-bottom: 1.1rem; box-shadow: var(--shadow); }
@@ -158,6 +158,9 @@ th { background: rgba(38, 63, 52, .05); font-weight: 700; }
   border: 1px solid var(--line-strong);
   box-shadow: var(--shadow);
 }
+/* The Miyajima hero is a cut-out with transparency -- it floats on the paper
+   texture, so the card border and shadow would draw a box around nothing. */
+.hero-shot.is-cutout img { border: 0; box-shadow: none; }
 .hero-shot figcaption { text-align: center; color: var(--muted); font-size: .84rem; margin-top: .6rem; }
 
 /* ---------- Strip ---------- */
