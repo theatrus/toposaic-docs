@@ -1,12 +1,12 @@
 ---
 title: Release notes — TopoSaic
-description: What changed in each version of TopoSaic, from the current 0.7.0 release back to 0.4 — satellite ground colors, flat seas, the vertical scale, source bundles, ferry routes, markers and labels, filament slots, and wall mounting.
+description: What changed in each version of TopoSaic, from the current 0.8.0 release back to 0.4 — shaped outlines, full live previews, reusable map tiles, faster dense cities, satellite ground colors, flat seas, labels, and wall mounting.
 ogTitle: TopoSaic release notes
-ogDescription: What changed in each version, from 0.7.0 back to 0.4.
+ogDescription: What changed in each version, from 0.8.0 back to 0.4.
 ogType: article
 url: /changelog/
 sitemap: yes
-updated: 2026-07-30
+updated: 2026-08-02
 ---
 
 <section class="section guide-head">
@@ -15,8 +15,26 @@ updated: 2026-07-30
   <p class="sub">Every build for Windows, macOS, and Linux is on the <a href="https://github.com/theatrus/toposaic/releases" onclick="return gtag_report_conversion('https://github.com/theatrus/toposaic/releases')">GitHub releases page</a>. The desktop app checks for a newer version on launch and can install it in place.</p>
 </section>
 
+<section class="section" id="v0-8-0">
+  <p class="eyebrow">Current · 2 August 2026</p>
+  <h2>Version 0.8.0</h2>
+  <p class="sub">Shape the model's outside edge, inspect the real model while you work, reuse map data as you move, and build dense cities in far less time.</p>
+
+  <h3>Circles, ellipses, and outlines you draw</h3>
+  <p>A single-tile model no longer has to be rectangular. Choose a circle or ellipse, or draw a polygon on the map. Puzzle pieces clip cleanly at the boundary and a one-piece display tray follows the same outline. The rectangle stays the default. Shaped outlines do not yet work with super-tiles, split trays, or front-lip tray labels.</p>
+
+  <h3>The live preview is the model</h3>
+  <p>The background 3D preview now uses the same Rust mesh builders as export. It can show puzzle cuts, shaped edges, buildings, bridges, mapped layers, labels, mount cuts, and whole or split trays before you generate. It names each stage, shows progress, and lets you cancel stale work without losing the last good view. Fast, Detailed, and High settings trade speed for detail. You can also place markers in the 3D view and choose which member of a super-tile grid to inspect.</p>
+
+  <h3>Map downloads follow the work</h3>
+  <p>OpenStreetMap data now caches in stable tiles, so nearby pans, zoom changes, rotations, and super-tiles reuse what is already on disk. A close view fetches added streets or paths only when it needs them. Roads, ferries, water, buildings, railways, lifts, and airports keep separate tile sets, so one failed detail request no longer throws away layers that loaded.</p>
+
+  <h3>Dense cities build much faster</h3>
+  <p>The mesh builder now looks up only the buildings and lines near each piece, reuses clipped geometry, and batches road work. In the checked-in Slow Tacoma case, earlier runs took 24–38 seconds; the new cold and warm runs both took about 7.9 seconds while keeping all 163,802 mapped buildings. Building filters remain optional and keep all mapped buildings by default. If the combined 3MF is enough, export can also skip the separate STL for every piece.</p>
+</section>
+
 <section class="section" id="v0-7-0">
-  <p class="eyebrow">Current · 30 July 2026</p>
+  <p class="eyebrow">30 July 2026</p>
   <h2>Version 0.7.0</h2>
   <p class="sub">Colors read off the place itself, a sea that lies flat, a vertical scale you choose, and a way to keep the map data a print came from.</p>
 
